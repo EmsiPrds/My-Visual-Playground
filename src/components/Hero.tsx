@@ -1,0 +1,80 @@
+interface HeroProps {
+  darkMode: boolean;
+}
+
+export default function Hero({ darkMode }: HeroProps) {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <section
+      id="hero"
+      className={`min-h-screen flex items-center justify-center ${
+        darkMode ? "bg-secondary" : "bg-primary"
+      }`}
+    >
+      {/* Card container with notch */}
+      <div
+        className={`relative w-[98vw] max-w-screen h-[97vh] rounded-4xl flex items-center justify-center overflow-hidden ${
+          darkMode ? "bg-primary" : "bg-secondary"
+        } shadow-2xl`}
+      >
+        {/* Top notch */}
+        <div
+          className={`absolute -top-4 left-1/2 -translate-x-1/2 w-70 h-25 ${
+            darkMode ? "bg-secondary" : "bg-primary"
+          } clip-notch`}
+        />
+
+        {/* Hero content */}
+        <div className="relative text-center space-y-8 animate-fadeIn">
+          <h1
+            className={`text-4xl sm:text-4xl lg:text-5xl font-bakbak font-bold leading-tight ${
+              darkMode ? "text-white" : "text-gray-900"
+            }`}
+          >
+            Designing, Building, and
+            <span className="bg-linear-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
+              {" "}
+              Connecting the Digital World
+            </span>
+          </h1>
+
+          <p
+            className={`text-lg sm:text-xl max-w-3xl mx-auto ${
+              darkMode ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
+            MVP Visuals crafts modern digital experiences through web design,
+            graphic creativity, and intelligent networking.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <button
+              onClick={() => scrollToSection("#projects")}
+              className="group relative px-8 py-4 bg-yellow-400 text-primary rounded-full font-semibold overflow-hidden hover:scale-105 transition-transform duration-300"
+            >
+              <span className="relative z-10 flex items-center">
+                View Resume
+              </span>
+              <div className="absolute inset-0 bg-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+
+            <button
+              onClick={() => scrollToSection("#contact")}
+              className={`px-8 py-4 rounded-full font-semibold border-2 ${
+                darkMode
+                  ? "border-yellow-400 text-yellow-400 hover:bg-yellow-400/10"
+                  : "border-yellow-500 text-yellow-600 hover:bg-yellow-50"
+              } transition-colors duration-300`}
+            >
+              Let's Connect
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
