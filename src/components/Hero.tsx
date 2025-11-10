@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import MockupImg from "../assets/E-legislative.png";
+import MockupImg1 from "../assets/WayneWebsite.png";
 import FocusedImg from "../assets/focus.png";
 import SmileImg from "../assets/smiling.png";
+import ScrollingMockup from "./ScrollingMockup";
 
 interface HeroProps {
   darkMode: boolean;
@@ -83,7 +86,7 @@ export default function Hero({ darkMode }: HeroProps) {
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
               onClick={() => scrollToSection("#projects")}
-              className="group relative px-8 py-2 bg-yellow-400 text-primary rounded-full font-semibold overflow-hidden hover:scale-105 transition-transform duration-300"
+              className="group relative px-8 py-2 bg-yellow-400 text-secondary rounded-full font-semibold overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <span className="relative z-10 flex items-center">
                 View Resume
@@ -97,7 +100,7 @@ export default function Hero({ darkMode }: HeroProps) {
               onClick={() => scrollToSection("#contact")}
               className={`px-8 py-2 rounded-full font-semibold border-2 ${
                 darkMode
-                  ? "border-yellow-400 text-yellow-400 hover:bg-yellow-400/10"
+                  ? "border-secondary text-secondary hover:bg-yellow-400/10"
                   : "border-yellow-500 text-yellow-600 hover:bg-yellow-50"
               } transition-colors duration-300`}
             >
@@ -105,22 +108,35 @@ export default function Hero({ darkMode }: HeroProps) {
             </button>
           </div>
 
-          {/* Image in center */}
-          <div className="relative flex justify-center items-end">
-            <img
-              src={FocusedImg}
-              alt="Focused version"
-              className={`w-[550px]  transition-opacity duration-500 ${
-                hovered ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <img
-              src={SmileImg}
-              alt="Smiling version"
-              className={`absolute w-[550px] transition-opacity duration-500 ${
-                hovered ? "opacity-100" : "opacity-0"
-              }`}
-            />
+          {/* Character with scrolling mockup background */}
+          <div className="flex justify-center items-center ">
+            <div>
+              {/* Scrolling mockup behind character */}
+              <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-sm -left-100 -bottom-100">
+                <ScrollingMockup imageSrc={MockupImg} scrollRange={300} />
+              </div>
+              <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none -skew-y-12 blur-sm -right-100 -bottom-100">
+                <ScrollingMockup imageSrc={MockupImg1} scrollRange={300} />
+              </div>
+            </div>
+
+            {/* Character image on top */}
+            <div className="relative z-10 flex justify-center items-end">
+              <img
+                src={FocusedImg}
+                alt="Focused version"
+                className={`w-[300px] sm:w-[380px] md:w-[440px] lg:w-[500px] xl:w-[600px] transition-opacity duration-500 ${
+                  hovered ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <img
+                src={SmileImg}
+                alt="Smiling version"
+                className={`absolute w-[300px] sm:w-[380px] md:w-[440px] lg:w-[500px] xl:w-[600px] transition-opacity duration-500 ${
+                  hovered ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </div>
           </div>
         </div>
       </div>
