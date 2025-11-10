@@ -5,6 +5,14 @@ import FocusedImg from "../assets/focus.png";
 import SmileImg from "../assets/smiling.png";
 import ScrollingMockup from "./ScrollingMockup";
 
+import CanvaLogo from "../assets/Canva.svg";
+import FigmaLogo from "../assets/Figma.svg";
+import IllustratorLogo from "../assets/Illustrator.svg";
+import PhotoshopLogo from "../assets/Photoshop.svg";
+import ReactLogo from "../assets/ReactLogo.svg";
+import VsCodeLogo from "../assets/VsCode.svg";
+import WordPress from "../assets/WordPress.svg";
+
 interface HeroProps {
   darkMode: boolean;
 }
@@ -27,6 +35,18 @@ export default function Hero({ darkMode }: HeroProps) {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Floating icon animation state
+  const [floatPos, setFloatPos] = useState(0);
+  useEffect(() => {
+    let t = 0;
+    const animate = () => {
+      t += 0.02;
+      setFloatPos(Math.sin(t) * 10);
+      requestAnimationFrame(animate);
+    };
+    animate();
   }, []);
 
   return (
@@ -136,6 +156,31 @@ export default function Hero({ darkMode }: HeroProps) {
                   hovered ? "opacity-100" : "opacity-0"
                 }`}
               />
+            </div>
+
+            {/* Floating glowing logos */}
+            <div className="absolute inset-0 pointer-events-none">
+              {[
+                { src: ReactLogo, x: -180, y: -50, color: "#61DAFB" },
+                { src: FigmaLogo, x: 100, y: -40, color: "#F24E1E" },
+                { src: PhotoshopLogo, x: -120, y: 80, color: "#31A8FF" },
+                { src: IllustratorLogo, x: 160, y: 90, color: "#FF9A00" },
+                { src: CanvaLogo, x: -200, y: 200, color: "#00C4CC" },
+                { src: VsCodeLogo, x: 140, y: 220, color: "#0078D7" },
+                { src: WordPress, x: 200, y: 350, color: "#0078D7" },
+              ].map((logo, i) => (
+                <img
+                  key={i}
+                  src={logo.src}
+                  alt="Floating Logo"
+                  className="absolute w-14 h-14 sm:w-16 sm:h-16 object-contain transition-transform duration-300"
+                  style={{
+                    left: `calc(50% + ${logo.x}px)`,
+                    top: `calc(50% + ${logo.y + floatPos}px)`,
+                    filter: `drop-shadow(0 0 15px ${logo.color}AA)`,
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
