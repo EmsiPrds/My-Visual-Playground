@@ -3,7 +3,7 @@ import MockupImg from "../assets/E-legislative.png";
 import FocusedImg from "../assets/focus.png";
 import SmileImg from "../assets/smiling.png";
 import MockupImg1 from "../assets/WayneWebsite.png";
-import StickerPeel from "../components/animation-components/StickerPeel"; // ✅ Import your component
+import StickerPeel from "../components/animation-components/StickerPeel";
 import ScrollingMockup from "./ScrollingMockup";
 
 import CanvaLogo from "../assets/Canva.svg";
@@ -59,12 +59,18 @@ export default function Hero({ darkMode }: HeroProps) {
 
         {/* Background glow */}
         <div
-          className="absolute w-100 h-100 bg-yellow-400/20 rounded-full blur-3xl animate-pulse"
+          className="absolute w-200 h-200 bg-yellow-400/20 rounded-full blur-3xl animate-pulse -bottom-50"
           style={{
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             transition: "transform 0.3s ease-out",
           }}
         ></div>
+
+        <div>
+          <h2 className="absolute text-[1000px] font-fugaz text-secondary z-0 -left-30 -top-60 opacity-3">
+            MVP
+          </h2>
+        </div>
 
         {/* Hero content */}
         <div className="relative h-[650px] text-center space-y-8 animate-fadeIn z-10">
@@ -81,7 +87,7 @@ export default function Hero({ darkMode }: HeroProps) {
           </h1>
 
           <p
-            className={`text-lg sm:text-xl max-w-3xl mx-auto ${
+            className={`font-poppins text-lg sm:text-xl max-w-3xl mx-auto ${
               darkMode ? "text-gray-300" : "text-gray-600"
             }`}
           >
@@ -118,7 +124,7 @@ export default function Hero({ darkMode }: HeroProps) {
           </div>
 
           {/* Character + mockups + sticker logos */}
-          <div className="flex justify-center items-center relative">
+          <div className="flex justify-center items-center relative z-10">
             {/* Scrolling mockups behind */}
             <div>
               <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-sm -left-100 bottom-30">
@@ -130,7 +136,7 @@ export default function Hero({ darkMode }: HeroProps) {
             </div>
 
             {/* Character image */}
-            <div className="relative z-10 flex justify-center items-end">
+            <div className="relative z-20 flex justify-center items-end">
               <img
                 src={FocusedImg}
                 alt="Focused version"
@@ -148,7 +154,7 @@ export default function Hero({ darkMode }: HeroProps) {
             </div>
 
             {/* Sticker Logos (GSAP draggable peel) */}
-            <div className="absolute inset-0 pointer-events-none z-10">
+            <div className="absolute inset-0 pointer-events-none z-30">
               {[
                 { src: ReactLogo, x: 550, y: 45, rotate: -20 },
                 { src: FigmaLogo, x: 800, y: 200, rotate: 15 },

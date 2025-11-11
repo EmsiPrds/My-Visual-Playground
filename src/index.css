@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bakbak+One&family=Fugaz+One&display=swap");
 @import "tailwindcss";
 @tailwind utilities;
 
 @theme {
   --font-poppins: Poppins, sans-serif;
   --font-bakbak: "Bakbak One", sans-serif;
+  --font-fugaz: "Fugaz One", sans-serif;
 
   --color-primary: #212121;
   --color-secondary: #ffffff;
