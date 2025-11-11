@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import MockupImg from "../assets/E-legislative.png";
-import MockupImg1 from "../assets/WayneWebsite.png";
 import FocusedImg from "../assets/focus.png";
 import SmileImg from "../assets/smiling.png";
+import MockupImg1 from "../assets/WayneWebsite.png";
+import StickerPeel from "../components/animation-components/StickerPeel"; // ✅ Import your component
 import ScrollingMockup from "./ScrollingMockup";
 
 import CanvaLogo from "../assets/Canva.svg";
@@ -35,18 +36,6 @@ export default function Hero({ darkMode }: HeroProps) {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  // Floating icon animation state
-  const [floatPos, setFloatPos] = useState(0);
-  useEffect(() => {
-    let t = 0;
-    const animate = () => {
-      t += 0.02;
-      setFloatPos(Math.sin(t) * 10);
-      requestAnimationFrame(animate);
-    };
-    animate();
   }, []);
 
   return (
@@ -128,19 +117,19 @@ export default function Hero({ darkMode }: HeroProps) {
             </button>
           </div>
 
-          {/* Character with scrolling mockup background */}
-          <div className="flex justify-center items-center ">
+          {/* Character + mockups + sticker logos */}
+          <div className="flex justify-center items-center relative">
+            {/* Scrolling mockups behind */}
             <div>
-              {/* Scrolling mockup behind character */}
-              <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-sm -left-100 -bottom-100">
+              <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-sm -left-100 bottom-30">
                 <ScrollingMockup imageSrc={MockupImg} scrollRange={300} />
               </div>
-              <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none -skew-y-12 blur-sm -right-100 -bottom-100">
+              <div className="absolute inset-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none -skew-y-12 blur-sm -right-100 bottom-30">
                 <ScrollingMockup imageSrc={MockupImg1} scrollRange={300} />
               </div>
             </div>
 
-            {/* Character image on top */}
+            {/* Character image */}
             <div className="relative z-10 flex justify-center items-end">
               <img
                 src={FocusedImg}
@@ -158,27 +147,27 @@ export default function Hero({ darkMode }: HeroProps) {
               />
             </div>
 
-            {/* Floating glowing logos */}
-            <div className="absolute inset-0 pointer-events-none">
+            {/* Sticker Logos (GSAP draggable peel) */}
+            <div className="absolute inset-0 pointer-events-none z-10">
               {[
-                { src: ReactLogo, x: -180, y: -50, color: "#61DAFB" },
-                { src: FigmaLogo, x: 100, y: -40, color: "#F24E1E" },
-                { src: PhotoshopLogo, x: -120, y: 80, color: "#31A8FF" },
-                { src: IllustratorLogo, x: 160, y: 90, color: "#FF9A00" },
-                { src: CanvaLogo, x: -200, y: 200, color: "#00C4CC" },
-                { src: VsCodeLogo, x: 140, y: 220, color: "#0078D7" },
-                { src: WordPress, x: 200, y: 350, color: "#0078D7" },
+                { src: ReactLogo, x: 550, y: 45, rotate: -20 },
+                { src: FigmaLogo, x: 800, y: 200, rotate: 15 },
+                { src: PhotoshopLogo, x: 430, y: 230, rotate: -15 },
+                { src: IllustratorLogo, x: 900, y: 350, rotate: 0 },
+                { src: CanvaLogo, x: 350, y: 400, rotate: 0 },
+                { src: VsCodeLogo, x: 750, y: 450, rotate: 10 },
+                { src: WordPress, x: 530, y: 450, rotate: -20 },
               ].map((logo, i) => (
-                <img
+                <StickerPeel
                   key={i}
-                  src={logo.src}
-                  alt="Floating Logo"
-                  className="absolute w-14 h-14 sm:w-16 sm:h-16 object-contain transition-transform duration-300"
-                  style={{
-                    left: `calc(50% + ${logo.x}px)`,
-                    top: `calc(50% + ${logo.y + floatPos}px)`,
-                    filter: `drop-shadow(0 0 15px ${logo.color}AA)`,
-                  }}
+                  imageSrc={logo.src}
+                  width={80}
+                  rotate={logo.rotate}
+                  peelDirection={i * 20}
+                  shadowIntensity={0.5}
+                  lightingIntensity={0.2}
+                  className="pointer-events-auto"
+                  initialPosition={{ x: logo.x, y: logo.y }}
                 />
               ))}
             </div>
