@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bakbak+One&family=Fugaz+One&display=swap");
 @import "tailwindcss";
 @tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-poppins: Poppins, sans-serif;
