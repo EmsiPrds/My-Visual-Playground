@@ -35,6 +35,10 @@ export default function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  useEffect(() => {
+  document.documentElement.classList.add("dark");
+}, []);
+
   return (
     <section
       id="hero"
