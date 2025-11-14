@@ -3,19 +3,21 @@ import { useEffect, useRef, useState } from "react";
 interface ScrollingMockupProps {
   imageSrc: string;
   alt?: string;
-  widthClass?: string; // Tailwind width classes
-  scrollRange?: number; // Optional custom scroll distance
-  speed?: number; // Scroll speed
-  tilt?: number; // Optional tilt in degrees
+  widthClass?: string;
+  scrollRange?: number;
+  speed?: number;
+  tilt?: number;
+  direction?: "up" | "down"; // NEW
 }
 
 const ScrollingMockup: React.FC<ScrollingMockupProps> = ({
   imageSrc,
   alt = "Scrolling Mockup",
   widthClass = "w-[380px] sm:w-[450px] lg:w-[520px]",
-  scrollRange, // Optional
+  scrollRange,
   speed = 0.4,
   tilt = 0,
+  direction = "up", // <-- important: default direction
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -30,7 +32,6 @@ const ScrollingMockup: React.FC<ScrollingMockupProps> = ({
         const containerHeight = containerRef.current.clientHeight;
         const imageHeight = imgRef.current.scrollHeight;
 
-        // if scrollRange is provided → use it, else use full scrollable distance
         const range = scrollRange ?? Math.max(imageHeight - containerHeight, 0);
         setMaxScroll(range);
       }
@@ -42,14 +43,15 @@ const ScrollingMockup: React.FC<ScrollingMockupProps> = ({
   }, [scrollRange]);
 
   useEffect(() => {
-    let currentScroll = 0;
-    let direction = 1;
+    // Start position based on direction
+    let currentScroll = direction === "down" ? 0 : maxScroll;
+    let directionValue = direction === "down" ? 1 : -1;
 
     const animate = () => {
-      currentScroll += direction * speed;
+      currentScroll += directionValue * speed;
 
-      if (currentScroll >= maxScroll) direction = -1;
-      else if (currentScroll <= 0) direction = 1;
+      if (currentScroll >= maxScroll) directionValue = -1;
+      else if (currentScroll <= 0) directionValue = 1;
 
       setScrollY(currentScroll);
       animationRef.current = requestAnimationFrame(animate);
@@ -62,7 +64,7 @@ const ScrollingMockup: React.FC<ScrollingMockupProps> = ({
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [maxScroll, speed]);
+  }, [maxScroll, speed, direction]);
 
   return (
     <div

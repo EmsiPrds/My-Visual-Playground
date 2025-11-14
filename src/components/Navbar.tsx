@@ -67,10 +67,10 @@ export default function Navbar() {
       }`}
     >
       {/* Navbar container */}
-      <div className={`relative mx-auto max-w-[1440px] px-8 py-6 mt-4 `}>
-        <div className="flex items-center text-xl justify-between">
+      <div className={`relative mx-auto max-w-[1440px] px-6 sm:px-6 md:px-8 py-4 sm:py-6 mt-2 sm:mt-4`}>
+        <div className="flex items-center text-base sm:text-lg md:text-xl justify-between">
           {/* Left Links */}
-          <div className="hidden md:flex items-center space-x-30">
+          <div className="hidden md:flex items-center space-x-20 lg:space-x-30">
             {navLinks.slice(0, 3).map((link) => (
               <SmoothLink
                 key={link.name}
@@ -85,17 +85,17 @@ export default function Navbar() {
 
           {/* Center Logo (overlapping the hero notch) */}
           <div className="absolute left-1/2 -translate-x-1/2 z-10 bg-transparent">
-            <div className="w-30 h-30 flex items-center justify-center bg-transparent">
+            <div className="w-20 h-20 sm:w-25 sm:h-25 md:w-30 md:h-30 flex items-center justify-center bg-transparent">
               <img 
                 src={logo} 
                 alt="Logo" 
-                className="h-13 transition-opacity duration-300" 
+                className="h-8 sm:h-10 md:h-13 transition-opacity duration-300" 
               />
             </div>
           </div>
 
           {/* Right Links */}
-          <div className="hidden md:flex items-center space-x-30">
+          <div className="hidden md:flex items-center space-x-20 lg:space-x-30">
             {navLinks.slice(3).map((link) => (
               <SmoothLink
                 key={link.name}
