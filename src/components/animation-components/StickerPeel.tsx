@@ -17,6 +17,8 @@ interface StickerPeelProps {
   initialPosition?: "center" | "random" | { x: number; y: number };
   peelDirection?: number;
   className?: string;
+  shadowColor?: string;
+  shadowGlowColor?: string;
 }
 
 interface CSSVars extends CSSProperties {
@@ -47,7 +49,12 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
   initialPosition = "center",
   peelDirection = 0,
   className = "",
+  shadowColor = "black",
+  shadowGlowColor,
 }) => {
+  // Generate unique IDs for filters to avoid conflicts
+  const filterId = useMemo(() => `dropShadow-${Math.random().toString(36).substr(2, 9)}`, []);
+  const glowFilterId = useMemo(() => `glow-${Math.random().toString(36).substr(2, 9)}`, []);
   const containerRef = useRef<HTMLDivElement>(null);
   const dragTargetRef = useRef<HTMLDivElement>(null);
   const pointLightRef = useRef<SVGFEPointLightElement>(null);
@@ -232,7 +239,7 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
   const stickerMainStyle: CSSProperties = {
     clipPath: `polygon(var(--sticker-start) var(--sticker-start), var(--sticker-end) var(--sticker-start), var(--sticker-end) var(--sticker-end), var(--sticker-start) var(--sticker-end))`,
     transition: "clip-path 0.6s ease-out",
-    filter: "url(#dropShadow)",
+    filter: shadowGlowColor ? `url(#${glowFilterId})` : `url(#${filterId})`,
     willChange: "clip-path, transform",
   };
 
@@ -320,15 +327,40 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
             <feComposite in="lit" in2="SourceAlpha" operator="in" />
           </filter>
 
-          <filter id="dropShadow">
+          <filter id={filterId}>
             <feDropShadow
               dx="2"
               dy="4"
               stdDeviation={3 * shadowIntensity}
-              floodColor="black"
+              floodColor={shadowColor}
               floodOpacity={shadowIntensity}
             />
           </filter>
+
+          {shadowGlowColor && (
+            <filter id={glowFilterId}>
+              {/* Extract alpha channel for glow */}
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="alpha"/>
+              {/* Blur the alpha to create glow shape */}
+              <feGaussianBlur in="alpha" stdDeviation="6" result="blur"/>
+              {/* Apply colored glow */}
+              <feFlood floodColor={shadowGlowColor} floodOpacity="0.8" result="glowColor"/>
+              <feComposite in="glowColor" in2="blur" operator="in" result="coloredGlow"/>
+              {/* Regular drop shadow */}
+              <feDropShadow
+                dx="2"
+                dy="4"
+                stdDeviation={3 * shadowIntensity}
+                floodColor={shadowColor}
+                floodOpacity={shadowIntensity}
+              />
+              {/* Merge: colored glow, shadow, then original graphic */}
+              <feMerge>
+                <feMergeNode in="coloredGlow"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          )}
 
           <filter id="expandAndFill">
             <feOffset dx="0" dy="0" in="SourceAlpha" result="shape" />

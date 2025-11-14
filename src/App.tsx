@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 // import About from './components/About';
@@ -15,22 +16,24 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      {/* <About darkMode={darkMode} /> */}
-      {/* <Services darkMode={darkMode} />
-      <Skills darkMode={darkMode} />
-      <Projects darkMode={darkMode} />
-      <ArtGallery darkMode={darkMode} />
-      <Process darkMode={darkMode} />
-      <Testimonials darkMode={darkMode} />
-      <Blog darkMode={darkMode} />
-      <Resume darkMode={darkMode} />
-      <Experiences darkMode={darkMode} />
-      <Contact darkMode={darkMode} />
-      <Footer darkMode={darkMode} /> */}
-    </div>
+    <BrowserRouter>
+      <div>
+        <Navbar />
+        <Hero />
+        {/* <About darkMode={darkMode} /> */}
+        {/* <Services darkMode={darkMode} />
+        <Skills darkMode={darkMode} />
+        <Projects darkMode={darkMode} />
+        <ArtGallery darkMode={darkMode} />
+        <Process darkMode={darkMode} />
+        <Testimonials darkMode={darkMode} />
+        <Blog darkMode={darkMode} />
+        <Resume darkMode={darkMode} />
+        <Experiences darkMode={darkMode} />
+        <Contact darkMode={darkMode} />
+        <Footer darkMode={darkMode} /> */}
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,11 +1,23 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import Logo from "../assets/logo-plain-black.svg";
+import LogoBlack from "../assets/logo-plain-black.svg";
+import LogoWhite from "../assets/logo-plain-white.svg";
+import SmoothLink from "./SmoothLink";
+
+type Theme = "light" | "dark" | "yellow";
+
+// Helper function to get current theme from DOM
+const getCurrentTheme = (): Theme => {
+  const root = document.documentElement;
+  if (root.classList.contains("yellow")) return "yellow";
+  if (root.classList.contains("dark")) return "dark";
+  return "light";
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -14,10 +26,26 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    console.log("theme:", theme);
-    setIsDark(theme !== "light");
+    const updateTheme = () => {
+      setCurrentTheme(getCurrentTheme());
+    };
+    updateTheme();
+
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
   }, []);
+
+  const isDark = currentTheme === "dark";
+  // Logo color based on top notch color:
+  // Light theme: top notch is dark (bg-primary) → use white logo
+  // Dark theme: top notch is light (bg-secondary/white) → use black logo
+  // Yellow theme: top notch is light (bg-yellow-50) → use black logo
+  const logo = currentTheme === "light" ? LogoWhite : LogoBlack;
 
   const navLinks = [
     { name: "Home", href: "#hero" },
@@ -28,12 +56,8 @@ export default function Navbar() {
     { name: "Gallery", href: "#gallery" },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+  const handleLinkClick = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -44,43 +68,43 @@ export default function Navbar() {
     >
       {/* Navbar container */}
       <div className={`relative mx-auto max-w-[1440px] px-8 py-6 mt-4 `}>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center text-xl justify-between">
           {/* Left Links */}
           <div className="hidden md:flex items-center space-x-30">
             {navLinks.slice(0, 3).map((link) => (
-              <button
+              <SmoothLink
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                to={link.href}
                 className={`relative group font-bakbak font-medium text-primary dark:text-secondary hover:text-accent transition-colors duration-300`}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-              </button>
+              </SmoothLink>
             ))}
           </div>
 
           {/* Center Logo (overlapping the hero notch) */}
           <div className="absolute left-1/2 -translate-x-1/2 z-10 bg-transparent">
-            <div
-              className={`w-30 h-30 flex items-center justify-center ${
-                isDark ? "bg-transparent" : "bg-transparent"
-              }`}
-            >
-              <img src={Logo} alt="Logo" className="h-13" />
+            <div className="w-30 h-30 flex items-center justify-center bg-transparent">
+              <img 
+                src={logo} 
+                alt="Logo" 
+                className="h-13 transition-opacity duration-300" 
+              />
             </div>
           </div>
 
           {/* Right Links */}
           <div className="hidden md:flex items-center space-x-30">
             {navLinks.slice(3).map((link) => (
-              <button
+              <SmoothLink
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                to={link.href}
                 className={`relative group font-bakbak font-medium text-primary dark:text-secondary hover:text-accent transition-colors duration-300`}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-              </button>
+              </SmoothLink>
             ))}
           </div>
 
@@ -107,9 +131,10 @@ export default function Navbar() {
         >
           <div className="px-4 pt-3 pb-4 space-y-2">
             {navLinks.map((link) => (
-              <button
+              <SmoothLink
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                to={link.href}
+                onClick={handleLinkClick}
                 className={`block w-full text-left px-3 py-2 rounded-md ${
                   isDark
                     ? "text-secondary hover:bg-primary"
@@ -117,7 +142,7 @@ export default function Navbar() {
                 } hover:text-accent transition-colors duration-300`}
               >
                 {link.name}
-              </button>
+              </SmoothLink>
             ))}
           </div>
         </div>

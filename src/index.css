@@ -3,6 +3,7 @@
 @import "tailwindcss";
 @tailwind utilities;
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant yellow (&:where(.yellow, .yellow *));
 
 @theme {
   --font-poppins: Poppins, sans-serif;
