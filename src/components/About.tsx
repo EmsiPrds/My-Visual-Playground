@@ -1,4 +1,5 @@
 import { Code, Network, Palette, Zap } from "lucide-react";
+import Lanyard from "./animation-components/Lanyard";
 
 interface AboutProps {
   darkMode: boolean;
@@ -21,6 +22,7 @@ export default function About({ darkMode }: AboutProps) {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <div className="w-72 h-72 mx-auto relative">
+              <Lanyard/>
               <div className="absolute inset-0 bg-linear-to-br from-yellow-400 to-yellow-500 rounded-full animate-pulse opacity-20"></div>
               <div className="absolute inset-4 bg-linear-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center">
                 <div
