@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 
 const ENCOURAGING_MESSAGES = [
   "Hi! Need help? 👋",
@@ -7,7 +7,21 @@ const ENCOURAGING_MESSAGES = [
   "I'm here to help! 💬",
   "Tap me for assistance!",
   "Let's chat! 😊",
-  "Questions? I've got answers!"
+  "Questions? I've got answers!",
+  "Looking around? I can guide you!",
+  "Want to explore my projects?",
+  "Need suggestions? Ask away!",
+  "I'm your friendly AI assistant 🤖",
+  "Curious about anything here?",
+  "Stuck? I can help you out!",
+  "Let's make things easier! ✨",
+  "Want to know more about my work?",
+  "Feel free to talk to me anytime!",
+  "Hello! I can assist you with anything!",
+  "Need a quick tour? Just ask!",
+  "I'm right here if you need help! 🙂",
+  "Checking out my portfolio? Ask me anything!",
+  "Ready when you are! 🚀"
 ];
 
 export default function AIAssistant() {
@@ -75,7 +89,7 @@ export default function AIAssistant() {
       <div className="fixed bottom-6 right-6 z-50">
         {showBubble && !isOpen && (
           <div className="absolute bottom-24 right-0 mb-2 animate-bounce">
-            <div className="bg-white rounded-2xl shadow-lg px-4 py-3 max-w-[200px] relative">
+            <div className="bg-white rounded-2xl shadow-lg px-4 py-3 w-auto max-w-xs relative">
               <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white transform rotate-45"></div>
               <p className="text-sm text-gray-800 font-medium">{currentMessage}</p>
             </div>
@@ -143,13 +157,13 @@ export default function AIAssistant() {
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                  className={`w-auto max-w-[80%] rounded-2xl px-4 py-2 ${
                     message.role === 'user'
                       ? 'bg-blue-500 text-white rounded-br-none'
                       : 'bg-white text-gray-800 rounded-bl-none shadow-md'
                   }`}
                 >
-                  <p className="text-sm">{message.content}</p>
+                  <p className="text-sm whitespace-pre-wrap wrap-break-word">{message.content}</p>
                 </div>
               </div>
             ))}
