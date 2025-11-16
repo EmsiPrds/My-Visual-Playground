@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import AIAssistant from "./components/AiAssistant";
 // import About from './components/About';
 // import Services from './components/Services';
 // import Skills from './components/Skills';
@@ -32,6 +33,7 @@ function App() {
         <Experiences darkMode={darkMode} />
         <Contact darkMode={darkMode} />
         <Footer darkMode={darkMode} /> */}
+        <AIAssistant/>
       </div>
     </BrowserRouter>
   );
