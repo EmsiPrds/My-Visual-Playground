@@ -20,6 +20,7 @@ import { LightThemeToggler, DarkThemeToggler, YellowThemeToggler } from "./anima
 export default function Hero() {
   const [hovered, setHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [viewportSize, setViewportSize] = useState({ width: 375, height: 667 });
   const bp = useBreakpoint();
 
   useEffect(() => {
@@ -33,58 +34,77 @@ export default function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Update viewport size on resize for responsive calculations
+  useEffect(() => {
+    const updateViewport = () => {
+      setViewportSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    window.addEventListener("orientationchange", updateViewport);
+    
+    return () => {
+      window.removeEventListener("resize", updateViewport);
+      window.removeEventListener("orientationchange", updateViewport);
+    };
+  }, []);
+
   const logos = [
     {
       src: ReactLogo,
       glowColor: "#61DAFB",
       rotate: -10,
       position: {
-        sm: { x: 140, y: 20 },
-        md: { x: 260, y: 0 },
-        lg: { x: 410, y: -10 },
-        xl: { x: 520, y: -20 },
-        "2xl": { x: 600, y: -30 },
+        sm: { x: 130, y:50 },
+        md: { x: 250, y: 70 },
+        lg: { x: 400, y: 40 },
+        xl: { x: 600, y: 30 },
+        "2xl": { x: 250, y: -20 },
       },
-      size: { sm: 50, md: 60, lg: 75, xl: 90, "2xl": 105 },
+      size: { sm: 40, md: 80, lg: 60, xl: 65, "2xl": 90 },
     },
     {
       src: FigmaLogo,
       glowColor: "#A259FF",
       rotate: 20,
       position: {
-        sm: { x: 280, y: 120 },
-        md: { x: 390, y: 150 },
-        lg: { x: 600, y: 170 },
-        xl: { x: 710, y: 190 },
-        "2xl": { x: 760, y: 200 },
+        sm: { x: 250, y: 80 },
+        md: { x: 500, y: 200 },
+        lg: { x: 560, y: 100 },
+        xl: { x: 750, y: 100 },
+        "2xl": { x: 700, y: 70 },
       },
-      size: { sm: 40, md: 65, lg: 80, xl: 95, "2xl": 110 },
+      size: { sm: 30, md: 50, lg: 45, xl: 45, "2xl": 95 },
     },
     {
       src: TailwindLogo,
       glowColor: "#06B6D4",
       rotate: 20,
       position: {
-        sm: { x: 80, y: 130 },
-        md: { x: 120, y: 180 },
-        lg: { x: 230, y: 200 },
-        xl: { x: 300, y: 210 },
-        "2xl": { x: 340, y: 220 },
+        sm: { x: 60, y: 130 },
+        md: { x: 150, y: 200 },
+        lg: { x: 330, y: 140 },
+        xl: { x: 530, y: 140 },
+        "2xl": { x: 180, y: 180 },
       },
-      size: { sm: 50, md: 60, lg: 75, xl: 90, "2xl": 100 },
+      size: { sm: 45, md: 70, lg: 60, xl: 60, "2xl": 85 },
     },
     {
       src: JavascriptLogo,
       glowColor: "#FDCE00",
       rotate: -30,
       position: {
-        sm: { x: 320, y: 260 },
-        md: { x: 380, y: 310 },
-        lg: { x: 560, y: 350 },
-        xl: { x: 650, y: 380 },
-        "2xl": { x: 700, y: 400 },
+        sm: { x: 300, y: 200 },
+        md: { x: 550, y: 350 },
+        lg: { x: 600, y: 200 },
+        xl: { x: 800, y: 220 },
+        "2xl": { x: 750, y: 360 },
       },
-      size: { sm: 42, md: 55, lg: 70, xl: 85, "2xl": 100 },
+      size: { sm: 35, md: 70, lg: 45, xl: 50, "2xl": 85 },
     },
     {
       src: VsCodeLogo,
@@ -92,40 +112,75 @@ export default function Hero() {
       rotate: 0,
       position: {
         sm: { x: 220, y: 300 },
-        md: { x: 240, y: 300 },
-        lg: { x: 380, y: 330 },
-        xl: { x: 460, y: 360 },
-        "2xl": { x: 500, y: 380 },
+        md: { x: 450, y: 500 },
+        lg: { x: 520, y: 280 },
+        xl: { x: 720, y: 320 },
+        "2xl": { x: 450, y: 400 },
       },
-      size: { sm: 55, md: 70, lg: 85, xl: 105, "2xl": 120 },
+      size: { sm: 45, md: 80, lg: 50, xl: 60, "2xl": 100 },
     },
     {
       src: CanvaLogo,
       glowColor: "#00C4CC",
       rotate: -8,
       position: {
-        sm: { x: 20, y: 240 },
-        md: { x: 80, y: 260 },
-        lg: { x: 160, y: 280 },
-        xl: { x: 230, y: 300 },
-        "2xl": { x: 260, y: 310 },
+        sm: { x: 30, y: 220 },
+        md: { x: 50, y: 350 },
+        lg: { x: 300, y: 220 },
+        xl: { x: 500, y: 230 },
+        "2xl": { x: 500, y: 260 },
       },
-      size: { sm: 45, md: 60, lg: 75, xl: 90, "2xl": 100 },
+      size: { sm: 45, md: 70, lg: 50, xl: 50, "2xl": 85 },
     },
     {
       src: WordPress,
       glowColor: "#21759B",
       rotate: 18,
       position: {
-        sm: { x: 100, y: 290 },
-        md: { x: 300, y: 230 },
-        lg: { x: 450, y: 260 },
-        xl: { x: 530, y: 280 },
-        "2xl": { x: 580, y: 290 },
+        sm: { x: 80, y: 300 },
+        md: { x: 150, y: 500 },
+        lg: { x: 380, y: 280 },
+        xl: { x: 580, y: 320 },
+        "2xl": { x: 500, y: 300 },
       },
-      size: { sm: 50, md: 60, lg: 75, xl: 90, "2xl": 100 },
+      size: { sm: 45, md: 80, lg: 60, xl: 60, "2xl": 85 },
     },
   ];
+
+  // Calculate responsive positions and sizes for mobile screens
+  const getResponsivePosition = (logo: typeof logos[0]) => {
+    // For mobile (sm), scale the base position proportionally
+    if (bp === "sm") {
+      // Base viewport size (iPhone SE - 375x667)
+      const baseWidth = 375;
+      const baseHeight = 667;
+      
+      // Calculate scale factors
+      const widthScale = viewportSize.width / baseWidth;
+      const heightScale = viewportSize.height / baseHeight;
+      
+      // Use the position.sm values as base and scale them
+      const basePosition = logo.position.sm;
+      
+      return {
+        x: basePosition.x * widthScale,
+        y: basePosition.y * heightScale,
+      };
+    }
+    
+    // For larger screens, use the existing fixed positions
+    return logo.position[bp];
+  };
+
+  // Get responsive logo size
+  const getResponsiveSize = (logo: typeof logos[0]) => {
+    if (bp === "sm") {
+      const baseWidth = 375;
+      const sizeScale = Math.min(viewportSize.width / baseWidth, 1.2);
+      return logo.size[bp] * sizeScale;
+    }
+    return logo.size[bp];
+  };
 
   // Theme initialization is handled in main.tsx
 
@@ -134,14 +189,14 @@ export default function Hero() {
       id="hero"
       className="min-h-screen flex items-center justify-center bg-primary dark:bg-secondary yellow:bg-yellow-50"
     >
-      <div className="relative w-[98vw] max-w-screen h-[97vh] rounded-4xl
+      <div className="relative w-[98vw] max-w-screen h-[98vh] max-h-screen rounded-4xl
        sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl">
         {/* Top notch */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-40 sm:w-70 h-20 sm:h-25 bg-primary dark:bg-secondary yellow:bg-yellow-50 clip-notch" />
 
         {/* Background glow */}
         <div
-          className="absolute w-150 h-150 sm:w-300 sm:h-300 rounded-full animate-pulse -bottom-50 blur-3xl bg-blue-400/50 dark:bg-yellow-500/30 yellow:bg-yellow-400/40"
+          className="absolute w-150 h-150 sm:w-300 sm:h-300 md:w-200 md:h-200 lg:-bottom-100 rounded-full animate-pulse -bottom-50 blur-3xl bg-blue-400/50 dark:bg-yellow-500/30 yellow:bg-yellow-400/40"
           style={{
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             transition: "transform 0.3s ease-out",
@@ -149,16 +204,17 @@ export default function Hero() {
         ></div>
 
         <div>
-          <h2 className="absolute text-[300px] sm:text-[1000px] font-fugaz z-0 -left-40 top-0 sm:-left-30 sm:-top-60 opacity-10 text-black-100/10 dark:text-white/20 yellow:text-black-100/5">
+          <h2 className="absolute text-[300px] sm:text-[300px] md:text-[600px] lg:text-[600px] xl:text-[750px] font-fugaz z-0 -left-40 top-0 sm:-left-30 sm:-top-60 md:-left-70 md:top-0 lg:-left-30 lg:-top-40 opacity-10 text-black-100/20 dark:text-white/20 yellow:text-black-100/5">
             MVP
           </h2>
         </div>
 
         {/* Hero content */}
-        <div className=" relative h-full sm:h-[650px] text-center flex flex-col justify-center animate-fadeIn">
-          <div className="h-[50%] flex flex-col justify-center space-y-4 px-4">
+        <div className="relative w-full h-full text-center flex flex-col justify-between animate-fadeIn">
+          {/* Hero text contents */}
+          <div className="h-[50vh] flex flex-col justify-center items-center space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-3 px-4 sm:px-6 md:px-8 lg:px-10 pt-20 sm:pt-16 md:pt-20 lg:pt-40 xl:pt-35 pb-2 sm:pb-4 z-30">
             <h1
-              className="text-2xl sm:text-4xl lg:text-5xl font-bakbak font-bold leading-tight tracking-wider text-gray-900 dark:text-white yellow:text-yellow-900"
+              className="text-xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-6xl font-bakbak font-bold leading-tight tracking-wider text-gray-900 dark:text-white yellow:text-yellow-900"
             >
               Designing, Building, and
               <span className="bg-linear-to-r from-yellow-400 to-yellow-600 dark:from-yellow-400 dark:to-yellow-600 yellow:from-yellow-600 yellow:to-yellow-800 bg-clip-text text-transparent">
@@ -168,19 +224,19 @@ export default function Hero() {
             </h1>
 
             <p
-              className="font-poppins text-sm z-40 sm:text-xl max-w-3xl mx-auto text-primary dark:text-white yellow:text-yellow-900 relative"
+              className="font-poppins text-xs sm:text-base md:text-lg lg:text-lg z-40 max-w-3xl mx-auto text-primary dark:text-white yellow:text-yellow-900 relative px-2 lg:px-25"
             >
               MVP Visuals crafts modern digital experiences through web design,
               graphic creativity, and intelligent networking.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-row sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
               <SmoothLink
                 to="#projects"
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="text-sm group relative z-10 px-4 sm:px-8 py-1 sm:py-2 rounded-full font-semibold overflow-hidden hover:scale-105 transition-transform duration-300 bg-accent dark:bg-yellow-500 yellow:bg-yellow-500 text-white dark:text-gray-900 yellow:text-yellow-900"
+                className="text-xs sm:text-sm group relative z-10 px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 rounded-full font-semibold overflow-hidden hover:scale-105 transition-transform duration-300 bg-accent dark:bg-yellow-500 yellow:bg-yellow-500 text-white dark:text-gray-900 yellow:text-yellow-900"
               >
                 <span className="relative flex items-center">
                   View Resume
@@ -192,15 +248,22 @@ export default function Hero() {
                 to="#contact"
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="text-sm px-4 py-1 sm:px-8 sm:py-2 z-10 rounded-full font-semibold border-2 transition-colors duration-300 border-accent dark:border-yellow-500 yellow:border-yellow-600 text-accent dark:text-yellow-500 yellow:text-yellow-700 hover:bg-accent hover:text-white dark:hover:bg-yellow-500/10 yellow:hover:bg-yellow-200 dark:hover:text-yellow-400"
+                className="text-xs sm:text-sm px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 z-10 rounded-full font-semibold border-2 transition-colors duration-300 border-accent dark:border-yellow-500 yellow:border-yellow-600 text-accent dark:text-yellow-500 yellow:text-yellow-700 hover:bg-accent hover:text-white dark:hover:bg-yellow-500/10 yellow:hover:bg-yellow-200 dark:hover:text-yellow-400"
               >
                 Let's Connect
               </SmoothLink>
             </div>
+
+            {/* Theme Togglers - Navigation Dots */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4 xl:gap-8 pt-4 sm:pt-6 lg:flex-col lg:absolute lg:top-100 lg:left-15 lg:-translate-y-1/2 xl:left-50 xl:top-120">
+              <LightThemeToggler />
+              <DarkThemeToggler />
+              <YellowThemeToggler />
+            </div>
           </div>
 
           {/* Character + mockups + sticker logos */}
-          <div className="h-[50%] flex justify-center items-center relative ">
+          <div className="flex-1 flex justify-center items-end relative w-full min-h-0">
             {/* Scrolling mockups behind */}
             <div>
               <div className="absolute inset-0 z-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-sm -left-100 bottom-30">
@@ -212,45 +275,49 @@ export default function Hero() {
             </div>
 
             {/* Character image */}
-            <div className="relative z-20 flex justify-center items-end">
+            <div className="relative z-20 flex justify-center items-end w-full">
               <img
                 src={FocusedImg}
                 alt="Focused version"
-                className={`w-full sm:w-[380px] md:w-[440px] lg:w-[500px] xl:w-[600px]  transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"
+                className={`h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"
                   }`}
               />
               <img
                 src={SmileImg}
                 alt="Smiling version"
-                className={`absolute w-full sm:w-[380px] md:w-[440px] lg:w-[500px] xl:w-[600px] transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"
+                className={`absolute h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"
                   }`}
               />
-            </div>
 
-            <div className="flex sm:flex-col gap-10 absolute z-50 -top-10 sm:left-0 sm:top-0">
-              <LightThemeToggler />
-              <DarkThemeToggler />
-              <YellowThemeToggler />
-            </div>
-
-            {/* Sticker Logos (GSAP draggable peel) */}
+              {/* Sticker Logos (GSAP draggable peel) */}
             <div className="absolute inset-0 pointer-events-none z-30">
-              {logos.map((logo, i) => (
-                <StickerPeel
-                  key={i}
-                  imageSrc={logo.src}
-                  width={logo.size[bp]}
-                  rotate={logo.rotate}
-                  peelDirection={i * 20}
-                  shadowIntensity={0.5}
-                  lightingIntensity={0.2}
-                  shadowColor="rgba(0, 0, 0, 0.3)"
-                  shadowGlowColor={logo.glowColor}
-                  initialPosition={logo.position[bp]}
-                  className="pointer-events-auto"
-                />
-              ))}
+              {logos.map((logo, i) => {
+                const position = getResponsivePosition(logo);
+                const size = getResponsiveSize(logo);
+                // Use a stable key that only changes on significant viewport changes (every 50px) or breakpoint changes
+                const viewportKey = bp === "sm" 
+                  ? `${i}-${bp}-${Math.round(viewportSize.width / 50)}-${Math.round(viewportSize.height / 50)}`
+                  : `${i}-${bp}`;
+                return (
+                  <StickerPeel
+                    key={viewportKey}
+                    imageSrc={logo.src}
+                    width={size}
+                    rotate={logo.rotate}
+                    peelDirection={i * 20}
+                    shadowIntensity={0.5}
+                    lightingIntensity={0.2}
+                    shadowColor="rgba(0, 0, 0, 0.3)"
+                    shadowGlowColor={logo.glowColor}
+                    initialPosition={position}
+                    className="pointer-events-auto"
+                  />
+                );
+              })}
             </div>
+            </div>
+
+            
           </div>
         </div>
       </div>

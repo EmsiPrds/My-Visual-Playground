@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import About from './components/About';
+// import About from './components/About';
 // import Services from './components/Services';
 // import Skills from './components/Skills';
 // import Projects from './components/Projects';
@@ -20,7 +20,7 @@ function App() {
       <div>
         <Navbar />
         <Hero />
-        <About darkMode={false}/>
+        {/* <About darkMode={false}/> */}
         {/* <Services darkMode={darkMode} />
         <Skills darkMode={darkMode} />
         <Projects darkMode={darkMode} />
