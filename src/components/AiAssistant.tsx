@@ -123,9 +123,12 @@ export default function AIAssistant() {
       <div className="fixed bottom-6 right-6 z-50">
         {showBubble && !isOpen && (
           <div className="absolute bottom-24 right-0 mb-2 animate-bounce">
-            <div className="bg-white rounded-2xl shadow-lg px-4 py-3 w-auto max-w-xs relative">
+            <div
+              className="bg-white rounded-2xl shadow-lg px-4 py-3 relative
+                  inline-block min-w-40 max-w-[250px]"
+            >
               <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white transform rotate-45"></div>
-              <p className="text-sm text-gray-800 font-medium">
+              <p className="text-sm text-gray-800 font-medium leading-snug whitespace-normal wrap-break-words">
                 {currentMessage}
               </p>
             </div>
