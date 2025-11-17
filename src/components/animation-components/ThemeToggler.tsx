@@ -6,21 +6,21 @@ import { cn } from "../../lib/utils";
 
 /**
  * Theme Toggler Components
- * 
+ *
  * This file provides 3 separate theme toggler components:
- * 
+ *
  * 1. LightThemeToggler - Sets theme to "light" when clicked
  *    Usage: <LightThemeToggler />
- * 
+ *
  * 2. DarkThemeToggler - Sets theme to "dark" when clicked
  *    Usage: <DarkThemeToggler />
- * 
+ *
  * 3. YellowThemeToggler - Sets theme to "yellow" when clicked
  *    Usage: <YellowThemeToggler />
- * 
+ *
  * Each toggler shows an active state when its theme is currently active.
  * Use all three together to provide theme selection:
- * 
+ *
  * <div className="flex gap-2">
  *   <LightThemeToggler />
  *   <DarkThemeToggler />
@@ -118,11 +118,12 @@ export const LightThemeToggler = ({
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
-        "w-7 h-7 sm:w-10 sm:h-10 rounded-full transition-all border-2",
+        "w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
         "bg-white border-gray-300 hover:border-gray-400",
         "dark:border-gray-600 dark:hover:border-gray-500",
         "yellow:border-yellow-300 yellow:hover:border-yellow-400",
-        isActive && "ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500 yellow:ring-yellow-500",
+        isActive &&
+          "ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500 yellow:ring-yellow-500",
         className
       )}
       {...props}
@@ -200,11 +201,12 @@ export const DarkThemeToggler = ({
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
-        "w-7 h-7 sm:w-10 sm:h-10 rounded-full transition-all border-2",
+        "w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
         "bg-black border-gray-800 hover:border-gray-700",
         "dark:border-gray-400 dark:hover:border-gray-300",
         "yellow:border-yellow-800 yellow:hover:border-yellow-700",
-        isActive && "ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500 yellow:ring-yellow-500",
+        isActive &&
+          "ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500 yellow:ring-yellow-500",
         className
       )}
       {...props}
@@ -282,11 +284,12 @@ export const YellowThemeToggler = ({
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
-        "w-7 h-7 sm:w-10 sm:h-10 rounded-full transition-all border-2",
+        "w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
         "bg-yellow-400 border-yellow-500 hover:border-yellow-600",
         "dark:border-yellow-400 dark:hover:border-yellow-300",
         "yellow:border-yellow-600 yellow:hover:border-yellow-700",
-        isActive && "ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500 yellow:ring-yellow-600",
+        isActive &&
+          "ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500 yellow:ring-yellow-600",
         className
       )}
       {...props}

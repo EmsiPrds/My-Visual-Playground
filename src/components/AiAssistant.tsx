@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { X, Send } from 'lucide-react';
+import { Send, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import aiAvatar from "../assets/AiAssistant.png";
 
 const ENCOURAGING_MESSAGES = [
   "Hi! Need help? 👋",
@@ -21,21 +22,26 @@ const ENCOURAGING_MESSAGES = [
   "Need a quick tour? Just ask!",
   "I'm right here if you need help! 🙂",
   "Checking out my portfolio? Ask me anything!",
-  "Ready when you are! 🚀"
+  "Ready when you are! 🚀",
 ];
 
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
-  const [currentMessage, setCurrentMessage] = useState('');
-  const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; content: string }>>([]);
-  const [inputValue, setInputValue] = useState('');
+  const [currentMessage, setCurrentMessage] = useState("");
+  const [messages, setMessages] = useState<
+    Array<{ role: "user" | "assistant"; content: string }>
+  >([]);
+  const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
       const showInterval = setInterval(() => {
-        const randomMessage = ENCOURAGING_MESSAGES[Math.floor(Math.random() * ENCOURAGING_MESSAGES.length)];
+        const randomMessage =
+          ENCOURAGING_MESSAGES[
+            Math.floor(Math.random() * ENCOURAGING_MESSAGES.length)
+          ];
         setCurrentMessage(randomMessage);
         setShowBubble(true);
 
@@ -45,7 +51,10 @@ export default function AIAssistant() {
       }, 15000);
 
       const initialTimeout = setTimeout(() => {
-        const randomMessage = ENCOURAGING_MESSAGES[Math.floor(Math.random() * ENCOURAGING_MESSAGES.length)];
+        const randomMessage =
+          ENCOURAGING_MESSAGES[
+            Math.floor(Math.random() * ENCOURAGING_MESSAGES.length)
+          ];
         setCurrentMessage(randomMessage);
         setShowBubble(true);
         setTimeout(() => setShowBubble(false), 4000);
@@ -64,21 +73,25 @@ export default function AIAssistant() {
     if (!inputValue.trim()) return;
 
     const userMessage = inputValue.trim();
-    setInputValue('');
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    setInputValue("");
+    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
     setTimeout(() => {
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: "I'm your AI assistant! I'm here to help answer your questions about this portfolio and more. Feel free to ask me anything!"
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "I'm your AI assistant! I'm here to help answer your questions about this portfolio and more. Feel free to ask me anything!",
+        },
+      ]);
       setIsLoading(false);
     }, 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
@@ -91,7 +104,9 @@ export default function AIAssistant() {
           <div className="absolute bottom-24 right-0 mb-2 animate-bounce">
             <div className="bg-white rounded-2xl shadow-lg px-4 py-3 w-auto max-w-xs relative">
               <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white transform rotate-45"></div>
-              <p className="text-sm text-gray-800 font-medium">{currentMessage}</p>
+              <p className="text-sm text-gray-800 font-medium">
+                {currentMessage}
+              </p>
             </div>
           </div>
         )}
@@ -103,7 +118,7 @@ export default function AIAssistant() {
         >
           <div className="w-20 h-20 rounded-full overflow-hidden shadow-xl transition-transform duration-300 hover:scale-110 hover:shadow-2xl border-4 border-white">
             <img
-              src="/src/assets/AiAssistant.png"
+              src={aiAvatar}
               alt="AI Assistant"
               className="w-full h-full object-cover"
             />
@@ -118,7 +133,7 @@ export default function AIAssistant() {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
                 <img
-                  src="/src/assets/AiAssistant.png"
+                  src={aiAvatar}
                   alt="AI Assistant"
                   className="w-full h-full object-cover"
                 />
@@ -141,12 +156,14 @@ export default function AIAssistant() {
               <div className="text-center py-8">
                 <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
                   <img
-                    src="/src/assets/AiAssistant.png"
+                    src={aiAvatar}
                     alt="AI Assistant"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-gray-600 text-sm">Hi! I'm your AI assistant.</p>
+                <p className="text-gray-600 text-sm">
+                  Hi! I'm your AI assistant.
+                </p>
                 <p className="text-gray-500 text-xs mt-1">Ask me anything!</p>
               </div>
             )}
@@ -154,16 +171,20 @@ export default function AIAssistant() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${
+                  message.role === "user" ? "justify-end" : "justify-start"
+                }`}
               >
                 <div
                   className={`w-auto max-w-[80%] rounded-2xl px-4 py-2 ${
-                    message.role === 'user'
-                      ? 'bg-blue-500 text-white rounded-br-none'
-                      : 'bg-white text-gray-800 rounded-bl-none shadow-md'
+                    message.role === "user"
+                      ? "bg-blue-500 text-white rounded-br-none"
+                      : "bg-white text-gray-800 rounded-bl-none shadow-md"
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap wrap-break-word">{message.content}</p>
+                  <p className="text-sm whitespace-pre-wrap wrap-break-word">
+                    {message.content}
+                  </p>
                 </div>
               </div>
             ))}
@@ -172,9 +193,18 @@ export default function AIAssistant() {
               <div className="flex justify-start">
                 <div className="bg-white rounded-2xl rounded-bl-none px-4 py-3 shadow-md">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    <div
+                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      style={{ animationDelay: "0ms" }}
+                    ></div>
+                    <div
+                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      style={{ animationDelay: "150ms" }}
+                    ></div>
+                    <div
+                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                      style={{ animationDelay: "300ms" }}
+                    ></div>
                   </div>
                 </div>
               </div>

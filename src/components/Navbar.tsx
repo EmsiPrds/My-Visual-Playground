@@ -78,7 +78,9 @@ export default function Navbar() {
       }`}
     >
       {/* Navbar container */}
-      <div className={`relative mx-auto max-w-[1440px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl px-4 sm:px-6 md:px-8 lg:px-5 py-4 sm:py-6 mt-2 sm:mt-4`}>
+      <div
+        className={`relative mx-auto max-w-[1440px] md:max-w-3xl lg:max-w-4xl xl:max-w-7xl 2xl:max-w-7xl px-4 sm:px-6 md:px-8 lg:px-5 py-4 sm:py-6 mt-2 sm:mt-4`}
+      >
         <div className="flex items-center text-base sm:text-base md:text-sm lg:text-base justify-between">
           {/* Desktop Left Links */}
           <div className="hidden md:flex items-center space-x-12 lg:space-x-15 xl:space-x-30 flex-1">
@@ -100,10 +102,10 @@ export default function Navbar() {
           {/* Center Logo (overlapping the hero notch) - Always visible */}
           <div className="absolute left-1/2 -translate-x-1/2 z-10 bg-transparent">
             <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-25 md:h-25 lg:w-30 lg:h-30 flex items-center justify-center bg-transparent">
-              <img 
-                src={logo} 
-                alt="Logo" 
-                className="h-7 sm:h-9 md:h-11 lg:h-13 transition-opacity duration-300" 
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-7 sm:h-9 md:h-11 lg:h-13 transition-opacity duration-300"
               />
             </div>
           </div>
@@ -136,27 +138,17 @@ export default function Navbar() {
               <span
                 className={`absolute w-6 h-0.5 transition-all duration-300 ${
                   isDark ? "bg-white" : "bg-primary"
-                } ${
-                  isOpen
-                    ? "rotate-45 translate-y-0"
-                    : "-translate-y-2"
-                }`}
+                } ${isOpen ? "rotate-45 translate-y-0" : "-translate-y-2"}`}
               />
               <span
                 className={`absolute w-6 h-0.5 transition-all duration-300 ${
                   isDark ? "bg-white" : "bg-primary"
-                } ${
-                  isOpen ? "opacity-0" : "opacity-100"
-                }`}
+                } ${isOpen ? "opacity-0" : "opacity-100"}`}
               />
               <span
                 className={`absolute w-6 h-0.5 transition-all duration-300 ${
                   isDark ? "bg-white" : "bg-primary"
-                } ${
-                  isOpen
-                    ? "-rotate-45 translate-y-0"
-                    : "translate-y-2"
-                }`}
+                } ${isOpen ? "-rotate-45 translate-y-0" : "translate-y-2"}`}
               />
             </button>
           </div>
@@ -166,9 +158,7 @@ export default function Navbar() {
       {/* Mobile dropdown with smooth animation */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen
-            ? "max-h-[600px] opacity-100"
-            : "max-h-0 opacity-0"
+          isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div
