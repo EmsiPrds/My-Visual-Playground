@@ -77,17 +77,38 @@ export default function AIAssistant() {
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        "https://n8n.cloudmateria.com/webhook/mvp-chatbot",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: userMessage,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.output || "No response received." },
+      ]);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content:
-            "I'm your AI assistant! I'm here to help answer your questions about this portfolio and more. Feel free to ask me anything!",
+          content: "Sorry, I encountered a network issue.",
         },
       ]);
-      setIsLoading(false);
-    }, 1000);
+    }
+
+    setIsLoading(false);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
