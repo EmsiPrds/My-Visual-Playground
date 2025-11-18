@@ -1,8 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
+import About from "./components/About";
+import AIAssistant from "./components/AiAssistant";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import AIAssistant from "./components/AiAssistant";
-// import About from './components/About';
+import Services from "./components/Services";
 // import Services from './components/Services';
 // import Skills from './components/Skills';
 // import Projects from './components/Projects';
@@ -21,9 +22,9 @@ function App() {
       <div>
         <Navbar />
         <Hero />
-        {/* <About darkMode={false}/> */}
-        {/* <Services darkMode={darkMode} />
-        <Skills darkMode={darkMode} />
+        <About darkMode={false} />
+        <Services />
+        {/* <Skills darkMode={darkMode} />
         <Projects darkMode={darkMode} />
         <ArtGallery darkMode={darkMode} />
         <Process darkMode={darkMode} />
@@ -33,7 +34,7 @@ function App() {
         <Experiences darkMode={darkMode} />
         <Contact darkMode={darkMode} />
         <Footer darkMode={darkMode} /> */}
-        <AIAssistant/>
+        <AIAssistant />
       </div>
     </BrowserRouter>
   );

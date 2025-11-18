@@ -16,7 +16,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "clsx": "^2.1.1",
     "gsap": "^3.13.0",
-    "lucide-react": "^0.553.0",
+    "lucide-react": "^0.554.0",
     "meshline": "^3.3.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
