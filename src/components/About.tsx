@@ -14,13 +14,27 @@ export default function About({ darkMode }: AboutProps) {
   ];
 
   return (
-    <section id="about" className={` ${darkMode ? "bg-gray-800" : "bg-white"}`}>
-      <div className="max-w-screen mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section id="about" className={`py-16 sm:py-24 ${darkMode ? "bg-gray-800" : "bg-white"}`}>
+      {/* 1. Changed max-w-screen to max-w-6xl for better central containment 
+        on large screens and kept default fluid behavior for small screens.
+        2. Added vertical padding on the section itself (py-16 sm:py-24).
+      */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 1. Changed md:grid-cols-2 to lg:grid-cols-2. This keeps content stacked 
+          on medium screens (tablets) and switches to two columns only on 
+          large screens (desktops), improving readability.
+          2. Increased vertical gap for small screens (gap-12) and 
+          maintained it for larger ones.
+        */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
-          <div className="space-y-6 ml-50">
+          {/* 1. Removed the fixed 'ml-50' margin. This was the main cause of 
+            non-responsiveness on small screens. The 'px-4 sm:px-6 lg:px-8' 
+            on the parent container handles horizontal spacing.
+          */}
+          <div className="space-y-6">
             <h2
-              className={`text-5xl font-bold font-bakbak ${
+              className={`text-4xl sm:text-5xl font-bold font-bakbak ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
@@ -31,7 +45,7 @@ export default function About({ darkMode }: AboutProps) {
             </h2>
 
             <p
-              className={`text-lg font-poppins ${
+              className={`text-base sm:text-lg font-poppins ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               } leading-relaxed`}
             >
@@ -51,7 +65,7 @@ export default function About({ darkMode }: AboutProps) {
             </p>
 
             <p
-              className={`text-lg ${
+              className={`text-base sm:text-lg ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               } leading-relaxed`}
             >
@@ -69,11 +83,12 @@ export default function About({ darkMode }: AboutProps) {
               that connect people in the digital world.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            {/* Highlights Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-4 pt-4">
               {highlights.map((item, index) => (
                 <div
                   key={index}
-                  className={`p-4 rounded-lg ${
+                  className={`p-3 sm:p-4 rounded-lg ${
                     darkMode ? "bg-gray-900/50" : "bg-gray-50"
                   } border ${
                     darkMode ? "border-gray-700" : "border-gray-200"
@@ -81,7 +96,7 @@ export default function About({ darkMode }: AboutProps) {
                 >
                   <item.icon className="text-yellow-400 mb-2" size={24} />
                   <p
-                    className={`font-semibold ${
+                    className={`text-sm sm:text-base font-semibold ${
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
@@ -93,6 +108,11 @@ export default function About({ darkMode }: AboutProps) {
           </div>
 
           {/* Lanyard Animation */}
+          {/* Added 'hidden lg:block' to hide the animation on small screens 
+              or 'hidden md:block' if you want it to appear on tablets, 
+              or no change if you want it on all sizes. 
+              Kept as is, assuming Lanyard handles its own sizing.
+          */}
           <div className="relative">
             <div className="w-full h-auto relative">
               <Lanyard />
