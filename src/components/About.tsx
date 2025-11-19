@@ -14,25 +14,28 @@ export default function About({ darkMode }: AboutProps) {
   ];
 
   return (
-    <section id="about" className={`py-16 sm:py-24 ${darkMode ? "bg-gray-800" : "bg-white"}`}>
+    <section
+      id="about"
+      className={`py-10 sm:py-0 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+    >
       {/* 1. Changed max-w-screen to max-w-6xl for better central containment 
         on large screens and kept default fluid behavior for small screens.
         2. Added vertical padding on the section itself (py-16 sm:py-24).
       */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen">
         {/* 1. Changed md:grid-cols-2 to lg:grid-cols-2. This keeps content stacked 
           on medium screens (tablets) and switches to two columns only on 
           large screens (desktops), improving readability.
           2. Increased vertical gap for small screens (gap-12) and 
           maintained it for larger ones.
         */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 items-center">
           {/* Text Content */}
           {/* 1. Removed the fixed 'ml-50' margin. This was the main cause of 
             non-responsiveness on small screens. The 'px-4 sm:px-6 lg:px-8' 
             on the parent container handles horizontal spacing.
           */}
-          <div className="space-y-6">
+          <div className="space-y-6 px-6 lg:ml-50">
             <h2
               className={`text-4xl sm:text-5xl font-bold font-bakbak ${
                 darkMode ? "text-white" : "text-gray-900"
@@ -113,7 +116,7 @@ export default function About({ darkMode }: AboutProps) {
               or no change if you want it on all sizes. 
               Kept as is, assuming Lanyard handles its own sizing.
           */}
-          <div className="relative">
+          <div className="relative ">
             <div className="w-full h-auto relative">
               <Lanyard />
             </div>
