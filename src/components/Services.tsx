@@ -97,7 +97,11 @@ export default function Services() {
             </h2>
 
             <p className="text-lg md:text-xl text-primary font-poppins text-center mb-12">
-              Turning ideas into interactive and connected digital realities.
+              I offer a range of creative and technical services that combine
+              design thinking with development expertise. Whether you need a
+              visually stunning website, a functional web app, or a reliable IT
+              setup, I provide end-to-end digital solutions that are crafted
+              with precision and purpose.
             </p>
 
             {/* Service Cards */}

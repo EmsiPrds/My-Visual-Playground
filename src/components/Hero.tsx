@@ -8,13 +8,13 @@ import { useBreakpoint } from "../lib/useBreakpoint";
 import ScrollingMockup from "./ScrollingMockup";
 import SmoothLink from "./SmoothLink";
 
-import CanvaLogo from "../assets/Canva.svg";
-import FigmaLogo from "../assets/Figma.svg";
-import JavascriptLogo from "../assets/Javascript.svg";
-import ReactLogo from "../assets/ReactLogo.svg";
-import TailwindLogo from "../assets/Tailwind.svg";
-import VsCodeLogo from "../assets/VsCode.svg";
-import WordPress from "../assets/WordPress.svg";
+import CanvaLogo from "../assets/Design-Tools-Logos/Canva.svg";
+import FigmaLogo from "../assets/Design-Tools-Logos/Figma.svg";
+import JavascriptLogo from "../assets/Dev-Logos/Javascript.svg";
+import ReactLogo from "../assets/Dev-Logos/ReactLogo.svg";
+import TailwindLogo from "../assets/Dev-Logos/Tailwind.svg";
+import WordPress from "../assets/Dev-Logos/WordPress.svg";
+import VsCodeLogo from "../assets/Dev-Tools-Logos/VsCode.svg";
 import {
   DarkThemeToggler,
   LightThemeToggler,

@@ -4,17 +4,7 @@ import AIAssistant from "./components/AiAssistant";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Services from "./components/Services";
-// import Services from './components/Services';
-// import Skills from './components/Skills';
-// import Projects from './components/Projects';
-// import ArtGallery from './components/ArtGallery';
-// import Process from './components/Process';
-// import Testimonials from './components/Testimonials';
-// import Blog from './components/Blog';
-// import Resume from './components/Resume';
-// import Experiences from './components/Experiences';
-// import Contact from './components/Contact';
-// import Footer from './components/Footer';
+import Skills from "./components/Skills";
 
 function App() {
   return (
@@ -24,8 +14,8 @@ function App() {
         <Hero />
         <About darkMode={false} />
         <Services />
-        {/* <Skills darkMode={darkMode} />
-        <Projects darkMode={darkMode} />
+        <Skills darkMode={false} />
+        {/* <Projects darkMode={darkMode} />
         <ArtGallery darkMode={darkMode} />
         <Process darkMode={darkMode} />
         <Testimonials darkMode={darkMode} />

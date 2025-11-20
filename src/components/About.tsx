@@ -94,12 +94,12 @@ export default function About({ darkMode }: AboutProps) {
                   className={`p-3 sm:p-4 rounded-lg ${
                     darkMode ? "bg-gray-900/50" : "bg-gray-50"
                   } border ${
-                    darkMode ? "border-gray-700" : "border-gray-200"
+                    darkMode ? "border-gray-700" : "border-primary"
                   } hover:border-yellow-400 transition-all duration-300 hover:transform hover:scale-105`}
                 >
                   <item.icon className="text-yellow-400 mb-2" size={24} />
                   <p
-                    className={`text-sm sm:text-base font-poppins font-semibold ${
+                    className={`text-sm sm:text-base font-bakbak tracking-wide font-semibold ${
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
