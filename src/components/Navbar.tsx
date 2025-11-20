@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import LogoBlack from "../assets/logo-plain-black.svg";
-import LogoWhite from "../assets/logo-plain-white.svg";
 import SmoothLink from "./SmoothLink";
 
 type Theme = "light" | "dark" | "yellow";
@@ -56,7 +55,7 @@ export default function Navbar() {
   // Light theme: top notch is dark (bg-primary) → use white logo
   // Dark theme: top notch is light (bg-secondary/white) → use black logo
   // Yellow theme: top notch is light (bg-yellow-50) → use black logo
-  const logo = currentTheme === "light" ? LogoWhite : LogoBlack;
+  const logo = currentTheme === "light" ? LogoBlack : LogoBlack;
 
   const navLinks = [
     { name: "Home", href: "#hero" },

@@ -7,16 +7,16 @@ interface AboutProps {
 
 export default function About({ darkMode }: AboutProps) {
   const highlights = [
-    { icon: Code, label: "Development" },
-    { icon: Palette, label: "Design" },
-    { icon: Network, label: "Networking" },
-    { icon: Zap, label: "Innovation" },
+    { icon: Code, label: "5+ Years of Experience" },
+    { icon: Palette, label: "40+ Projects Completed" },
+    { icon: Network, label: "Client & Team Collaboration" },
+    { icon: Zap, label: "Always Learning & Innovating" },
   ];
 
   return (
     <section
       id="about"
-      className={`py-10 sm:py-0 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+      className={`py-10 sm:py-0 ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
     >
       {/* 1. Changed max-w-screen to max-w-6xl for better central containment 
         on large screens and kept default fluid behavior for small screens.
@@ -49,7 +49,7 @@ export default function About({ darkMode }: AboutProps) {
 
             <p
               className={`text-base sm:text-lg font-poppins ${
-                darkMode ? "text-gray-300" : "text-gray-600"
+                darkMode ? "text-primary" : "text-primary"
               } leading-relaxed`}
             >
               Hi, I’m{" "}
@@ -87,7 +87,7 @@ export default function About({ darkMode }: AboutProps) {
             </p>
 
             {/* Highlights Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-4 pt-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-2 gap-4 pt-4">
               {highlights.map((item, index) => (
                 <div
                   key={index}
@@ -99,7 +99,7 @@ export default function About({ darkMode }: AboutProps) {
                 >
                   <item.icon className="text-yellow-400 mb-2" size={24} />
                   <p
-                    className={`text-sm sm:text-base font-semibold ${
+                    className={`text-sm sm:text-base font-poppins font-semibold ${
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >

@@ -191,14 +191,14 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-primary dark:bg-secondary yellow:bg-yellow-50"
+      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50"
     >
       <div
         className="relative w-[98vw] max-w-screen h-[98vh] max-h-screen rounded-4xl
        sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl"
       >
         {/* Top notch */}
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-40 sm:w-70 h-20 sm:h-25 bg-primary dark:bg-secondary yellow:bg-yellow-50 clip-notch" />
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-40 sm:w-70 h-20 sm:h-25 bg-gray-100 dark:bg-secondary yellow:bg-yellow-50 clip-notch" />
 
         {/* Background glow */}
         <div
@@ -210,7 +210,7 @@ export default function Hero() {
         ></div>
 
         <div>
-          <h2 className="absolute text-[300px] sm:text-[300px] md:text-[600px] lg:text-[600px] xl:text-[750px] 2xl:text-[900px] font-fugaz z-0 -left-40 top-0 sm:-left-30 sm:-top-60 md:-left-70 md:top-0 lg:-left-30 lg:-top-40 2xl:-left-10 2xl:-top-50 opacity-10 text-black-100/20 dark:text-white/20 yellow:text-black-100/5">
+          <h2 className="absolute text-[300px] sm:text-[300px] md:text-[600px] lg:text-[600px] xl:text-[750px] 2xl:text-[900px] font-fugaz z-0 -left-40 top-0 sm:-left-30 sm:-top-60 md:-left-70 md:top-0 lg:-left-30 lg:-top-40 2xl:-left-10 2xl:-top-50  text-gray-100 dark:text-white/20 yellow:text-black-100/5">
             MVP
           </h2>
         </div>

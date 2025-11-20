@@ -9,6 +9,7 @@ import webDevImg from "@/assets/web-dev.png";
 export default function Services() {
   const [cursorImg, setCursorImg] = useState<string | null>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const services = [
     {
@@ -37,14 +38,28 @@ export default function Services() {
     },
   ];
 
-  // Track mouse position
+  // Track screen size
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)"); // Desktop: ≥1024px
+    setIsDesktop(mq.matches);
+
+    const handleResize = () => setIsDesktop(mq.matches);
+    mq.addEventListener("change", handleResize);
+
+    return () => mq.removeEventListener("change", handleResize);
+  }, []);
+
+  // Track mouse movement (desktop only)
+  useEffect(() => {
+    if (!isDesktop) return;
+
     const handleMove = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
     };
+
     window.addEventListener("mousemove", handleMove);
     return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
+  }, [isDesktop]);
 
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -54,61 +69,77 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-20 bg-primary relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50"
     >
-      {/* Floating Preview Image */}
-      {cursorImg && (
-        <img
-          src={cursorImg}
-          className="pointer-events-none fixed w-80 h-80 object-contain opacity-100 transition-transform duration-150 z-9999"
-          style={{
-            top: pos.y + 20,
-            left: pos.x + 20,
-            transform: "translate(-50%, -50%)",
-          }}
-        />
-      )}
+      <div
+        className="relative w-[98vw] max-w-screen min-h-[98vh] max-h-screen rounded-4xl
+        sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden 
+        bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl"
+      >
+        {/* Floating Preview Image (Desktop Only) */}
+        {isDesktop && cursorImg && (
+          <img
+            src={cursorImg}
+            className="pointer-events-none fixed w-72 h-72 md:w-80 md:h-80 rounded-[20px] 
+            object-cover opacity-100 transition-transform duration-150 z-50"
+            style={{
+              top: pos.y + 20,
+              left: pos.x + 20,
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+        )}
 
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold font-bakbak text-center mb-4 text-secondary">
-            What I <span className="text-[#FDCE00]">Do</span>
-          </h2>
+        <div className="container mx-auto px-6 py-12">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold font-bakbak text-center mb-4 text-primary">
+              What I <span className="text-[#FDCE00]">Do</span>
+            </h2>
 
-          <p className="text-xl text-secondary font-poppins text-center mb-12">
-            Turning ideas into interactive and connected digital realities.
-          </p>
+            <p className="text-lg md:text-xl text-primary font-poppins text-center mb-12">
+              Turning ideas into interactive and connected digital realities.
+            </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {services.map((service, idx) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={idx}
-                  onMouseEnter={() => setCursorImg(service.preview)}
-                  onMouseLeave={() => setCursorImg(null)}
-                  className="group bg-[#1a1a1a] p-8 rounded-lg border-2 border-gray-800 hover:border-[#FDCE00] transition-all duration-300"
-                >
-                  <Icon
-                    size={48}
-                    className="text-[#FDCE00] mb-6 group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <h3 className="text-2xl font-bakbak font-bold text-secondary mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-300">{service.description}</p>
-                </div>
-              );
-            })}
-          </div>
+            {/* Service Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              {services.map((service, idx) => {
+                const Icon = service.icon;
+                return (
+                  <div
+                    key={idx}
+                    onMouseEnter={() =>
+                      isDesktop && setCursorImg(service.preview)
+                    }
+                    onMouseLeave={() => setCursorImg(null)}
+                    className="group bg-secondary/80 dark:bg-secondary/80 backdrop-blur-md 
+                    p-8 rounded-2xl border-2 border-primary hover:border-accent 
+                    transition-all duration-300 shadow-md"
+                  >
+                    <Icon
+                      size={48}
+                      className="text-accent mb-6 group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <h3 className="text-2xl font-bakbak font-bold text-primary mb-4">
+                      {service.title}
+                    </h3>
+                    <p className="text-primary/90 font-poppins leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
 
-          <div className="text-center">
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="px-8 py-4 bg-[#FDCE00] text-primary font-semibold rounded-lg hover:bg-[#ffd700] transition-all duration-300"
-            >
-              Let's Work Together
-            </button>
+            {/* CTA Button */}
+            <div className="text-center">
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="px-8 py-4 bg-accent text-primary font-semibold rounded-full 
+                hover:bg-accent/90 shadow-md transition-all duration-300"
+              >
+                Let's Work Together
+              </button>
+            </div>
           </div>
         </div>
       </div>
