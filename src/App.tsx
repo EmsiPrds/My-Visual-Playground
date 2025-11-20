@@ -3,6 +3,7 @@ import About from "./components/About";
 import AIAssistant from "./components/AiAssistant";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import Projects from "./components/Projects";
 import Services from "./components/Services";
 import Skills from "./components/Skills";
 
@@ -15,8 +16,8 @@ function App() {
         <About darkMode={false} />
         <Services />
         <Skills darkMode={false} />
-        {/* <Projects darkMode={darkMode} />
-        <ArtGallery darkMode={darkMode} />
+        <Projects />
+        {/* <ArtGallery darkMode={darkMode} />
         <Process darkMode={darkMode} />
         <Testimonials darkMode={darkMode} />
         <Blog darkMode={darkMode} />
