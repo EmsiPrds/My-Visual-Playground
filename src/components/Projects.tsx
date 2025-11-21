@@ -70,7 +70,7 @@ export default function Projects() {
         {/* Header */}
         <div className="text-center mb-10 md:mb-16 px-2">
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight 
+            className="text-3xl font-bakbak sm:text-4xl md:text-5xl font-bold mb-4 leading-tight 
               text-gray-900 dark:text-white"
           >
             Featured{" "}
@@ -79,7 +79,7 @@ export default function Projects() {
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
+          <p className="text-base font-poppins sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
             A showcase of recent work spanning design, development, and
             infrastructure
           </p>
@@ -108,7 +108,7 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent"></div>
 
                 <div className="absolute top-3 right-3">
-                  <span className="px-3 py-1 bg-yellow-400 text-white text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 font-poppins bg-yellow-400 text-white text-xs font-semibold rounded-full">
                     {project.category}
                   </span>
                 </div>
@@ -116,11 +116,11 @@ export default function Projects() {
 
               {/* Content */}
               <div className="p-5 md:p-6">
-                <h3 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                <h3 className="text-lg sm:text-xl font-bold font-bakbak mb-2 text-gray-900 dark:text-white">
                   {project.title}
                 </h3>
 
-                <p className="text-sm mb-4 text-gray-600 dark:text-gray-400">
+                <p className="text-sm mb-4 font-poppins text-gray-600 dark:text-gray-400">
                   {project.description}
                 </p>
 
@@ -128,7 +128,7 @@ export default function Projects() {
                   {project.tools.map((tool, toolIndex) => (
                     <span
                       key={toolIndex}
-                      className="px-2 py-1 text-xs rounded 
+                      className="px-2 py-1 text-xs font-poppins rounded 
                         bg-gray-100 text-gray-700 
                         dark:bg-gray-700 dark:text-gray-300"
                     >
@@ -141,12 +141,12 @@ export default function Projects() {
                 <div className="flex space-x-4">
                   <button className="flex items-center space-x-1 text-yellow-500 hover:text-yellow-600 transition-colors">
                     <ExternalLink size={16} />
-                    <span className="text-sm">View</span>
+                    <span className="text-sm font-poppins">View</span>
                   </button>
 
                   <button className="flex items-center space-x-1 text-yellow-500 hover:text-yellow-600 transition-colors">
                     <Github size={16} />
-                    <span className="text-sm">Code</span>
+                    <span className="text-sm font-poppins">Code</span>
                   </button>
                 </div>
               </div>

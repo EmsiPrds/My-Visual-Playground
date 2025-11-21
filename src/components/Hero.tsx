@@ -191,7 +191,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50"
+      className="relative min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50"
     >
       <div
         className="relative w-[98vw] max-w-screen h-[98vh] max-h-screen rounded-4xl
