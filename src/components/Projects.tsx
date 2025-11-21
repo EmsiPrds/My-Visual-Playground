@@ -66,7 +66,7 @@ export default function Projects() {
       id="services"
       className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-secondary"
     >
-      <div className="w-7xl py-20">
+      <div className="w-7xl py-20 px-5">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16 px-2">
           <h2

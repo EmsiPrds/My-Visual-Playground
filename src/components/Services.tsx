@@ -72,7 +72,7 @@ export default function Services() {
       className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50"
     >
       <div
-        className="relative w-[98vw] max-w-screen min-h-[98vh] max-h-screen rounded-4xl
+        className="relative w-[98vw] max-w-screen rounded-4xl
         sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden 
         bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl"
       >

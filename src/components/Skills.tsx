@@ -22,7 +22,7 @@ import typescript from "../assets/Dev-Logos/typescript.svg";
 import webflow from "../assets/Dev-Logos/webflow.svg";
 import wordpress from "../assets/Dev-Logos/WordPress.svg";
 
-// Dev Tools Logos Imports
+// Dev Tools
 import chatgpt from "../assets/Dev-Tools-Logos/chatgpt.svg";
 import cursor from "../assets/Dev-Tools-Logos/cursor.svg";
 import git from "../assets/Dev-Tools-Logos/git.svg";
@@ -33,7 +33,7 @@ import npm from "../assets/Dev-Tools-Logos/npm.svg";
 import virtualbox from "../assets/Dev-Tools-Logos/virtualbox.svg";
 import vscode from "../assets/Dev-Tools-Logos/VsCode.svg";
 
-// Design Tools Logos Imports
+// Design Tools
 import xd from "../assets/Design-Tools-Logos/adobexd.svg";
 import aftereffects from "../assets/Design-Tools-Logos/affter-effect.svg";
 import canva from "../assets/Design-Tools-Logos/Canva.svg";
@@ -48,7 +48,6 @@ import premiere from "../assets/Design-Tools-Logos/premier.svg";
 import sketchbook from "../assets/Design-Tools-Logos/sketchbook.svg";
 
 export const devTech = [
-  // Languages
   { src: html, alt: "HTML" },
   { src: css, alt: "CSS" },
   { src: javascript, alt: "JavaScript" },
@@ -57,22 +56,16 @@ export const devTech = [
   { src: cpp, alt: "C++" },
   { src: python, alt: "Python" },
   { src: php, alt: "PHP" },
-
-  // Libraries / Frameworks / Stacks
   { src: react, alt: "React" },
   { src: tailwind, alt: "TailwindCSS" },
   { src: ionic, alt: "Ionic" },
   { src: nodejs, alt: "Node.js" },
   { src: expressjs, alt: "Express.js" },
-
-  // Databases
   { src: mongodb, alt: "MongoDB" },
   { src: mysql, alt: "MySQL" },
-
-  // CMS / Web Platforms
   { src: wordpress, alt: "WordPress" },
   { src: elementor, alt: "Elementor" },
-  { src: divi, alt: "Divi Theme" },
+  { src: divi, alt: "Divi" },
   { src: webflow, alt: "Webflow" },
 ];
 
@@ -93,13 +86,11 @@ export const designTools = [
   { src: canva, alt: "Canva" },
   { src: sketchbook, alt: "Sketchbook" },
   { src: ibispaintx, alt: "IbisPaint X" },
-
   { src: photoshop, alt: "Photoshop" },
   { src: illustrator, alt: "Illustrator" },
   { src: xd, alt: "Adobe XD" },
-  { src: flash, alt: "Adobe Flash" },
+  { src: flash, alt: "Flash" },
   { src: lightroom, alt: "Lightroom" },
-
   { src: aftereffects, alt: "After Effects" },
   { src: premiere, alt: "Premiere" },
   { src: capcut, alt: "CapCut" },
@@ -113,13 +104,13 @@ export default function Skills({ darkMode }: SkillsProps) {
   return (
     <section
       id="skills"
-      className={`py-24 ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
+      className={`py-20 ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
     >
-      <div className="max-w-screen mx-50 h-full px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* HEADER */}
+        <div className="text-center mb-14">
           <h2
-            className={`text-4xl font-bold font-bakbak mb-4 ${
+            className={`text-3xl sm:text-4xl font-bold font-bakbak mb-4 ${
               darkMode ? "text-white" : "text-gray-900"
             }`}
           >
@@ -130,62 +121,57 @@ export default function Skills({ darkMode }: SkillsProps) {
           </h2>
 
           <p
-            className={`text-lg text-poppins max-w-2xl mx-auto ${
+            className={`text-base sm:text-lg max-w-2xl mx-auto ${
               darkMode ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            Every project starts with understanding — not just what to build,
-            but why it needs to exist. My process blends creativity,
-            collaboration, and logic to ensure each design and solution aligns
-            with purpose and impact.
+            Every project begins with understanding — blending creativity,
+            logic, and purpose to build meaningful digital solutions.
           </p>
         </div>
 
         {/* LOGO LOOPS */}
-        <div className="relative h-[400px] overflow-hidden space-y-6">
-          {/* Horizontal loop */}
-          <div className="flex flex-col justify-center space-y-20">
-            <div className="w-7xl mx-auto">
-              <LogoLoop
-                logos={designTools}
-                speed={50}
-                direction="left"
-                logoHeight={50}
-                gap={50}
-                scaleOnHover
-                fadeOut
-                fadeOutColor="#f3f4f6"
-                ariaLabel="Technology partners"
-              />
-            </div>
+        <div className="relative w-full overflow-hidden space-y-10 sm:space-y-14">
+          {/* 1: Design Tools */}
+          <div className="w-full mx-auto">
+            <LogoLoop
+              logos={designTools}
+              speed={50}
+              direction="left"
+              logoHeight={40} // mobile friendly
+              gap={40}
+              scaleOnHover
+              fadeOut
+              fadeOutColor={darkMode ? "#1f2937" : "#f3f4f6"}
+            />
+          </div>
 
-            <div>
-              <LogoLoop
-                logos={devTech}
-                speed={50}
-                direction="right"
-                logoHeight={50}
-                gap={50}
-                scaleOnHover
-                fadeOut
-                fadeOutColor="#f3f4f6"
-                ariaLabel="Technology partners"
-              />
-            </div>
+          {/* 2: Dev Tech */}
+          <div className="w-full mx-auto">
+            <LogoLoop
+              logos={devTech}
+              speed={50}
+              direction="right"
+              logoHeight={40}
+              gap={40}
+              scaleOnHover
+              fadeOut
+              fadeOutColor={darkMode ? "#1f2937" : "#f3f4f6"}
+            />
+          </div>
 
-            <div className="w-7xl mx-auto">
-              <LogoLoop
-                logos={devTools}
-                speed={50}
-                direction="left"
-                logoHeight={50}
-                gap={50}
-                scaleOnHover
-                fadeOut
-                fadeOutColor="#f3f4f6"
-                ariaLabel="Technology partners"
-              />
-            </div>
+          {/* 3: Dev Tools */}
+          <div className="w-full mx-auto">
+            <LogoLoop
+              logos={devTools}
+              speed={50}
+              direction="left"
+              logoHeight={40}
+              gap={40}
+              scaleOnHover
+              fadeOut
+              fadeOutColor={darkMode ? "#1f2937" : "#f3f4f6"}
+            />
           </div>
         </div>
       </div>
