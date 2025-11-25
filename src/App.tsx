@@ -2,12 +2,16 @@ import { BrowserRouter } from "react-router-dom";
 import About from "./components/About";
 import AIAssistant from "./components/AiAssistant";
 import ClickSpark from "./components/animation-components/ClickSpark";
+import Contact from "./components/Contacts";
+import Experience from "./components/Experience";
+import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Services from "./components/Services";
 import Skills from "./components/Skills";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
           <Skills darkMode={false} />
           <Projects />
           <Gallery darkMode={false} />
+          <Experience darkMode={false} />
+          <Testimonials darkMode={false} />
+          <Contact darkMode={false} />
+          <Footer darkMode={false} />
           <AIAssistant />
         </div>
       </ClickSpark>
