@@ -1,4 +1,4 @@
-import { Code, Network, Palette, Zap } from "lucide-react";
+import { BrainCircuit, Code, FolderKanban, Network } from "lucide-react";
 import Lanyard from "./animation-components/Lanyard";
 
 interface AboutProps {
@@ -7,10 +7,10 @@ interface AboutProps {
 
 export default function About({ darkMode }: AboutProps) {
   const highlights = [
-    { icon: Code, label: "5+ Years of Experience" },
-    { icon: Palette, label: "40+ Projects Completed" },
+    { icon: Code, label: "2+ Years of Experience" },
+    { icon: FolderKanban, label: "50+ Projects Completed" },
     { icon: Network, label: "Client & Team Collaboration" },
-    { icon: Zap, label: "Always Learning & Innovating" },
+    { icon: BrainCircuit, label: "Always Learning & Innovating" },
   ];
 
   return (
@@ -18,23 +18,8 @@ export default function About({ darkMode }: AboutProps) {
       id="about"
       className={`py-10 sm:py-0 ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
     >
-      {/* 1. Changed max-w-screen to max-w-6xl for better central containment 
-        on large screens and kept default fluid behavior for small screens.
-        2. Added vertical padding on the section itself (py-16 sm:py-24).
-      */}
       <div className="max-w-screen">
-        {/* 1. Changed md:grid-cols-2 to lg:grid-cols-2. This keeps content stacked 
-          on medium screens (tablets) and switches to two columns only on 
-          large screens (desktops), improving readability.
-          2. Increased vertical gap for small screens (gap-12) and 
-          maintained it for larger ones.
-        */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 items-center">
-          {/* Text Content */}
-          {/* 1. Removed the fixed 'ml-50' margin. This was the main cause of 
-            non-responsiveness on small screens. The 'px-4 sm:px-6 lg:px-8' 
-            on the parent container handles horizontal spacing.
-          */}
           <div className="space-y-6 px-6 lg:ml-50">
             <h2
               className={`text-4xl sm:text-5xl font-bold font-bakbak ${
@@ -109,13 +94,6 @@ export default function About({ darkMode }: AboutProps) {
               ))}
             </div>
           </div>
-
-          {/* Lanyard Animation */}
-          {/* Added 'hidden lg:block' to hide the animation on small screens 
-              or 'hidden md:block' if you want it to appear on tablets, 
-              or no change if you want it on all sizes. 
-              Kept as is, assuming Lanyard handles its own sizing.
-          */}
           <div className="relative ">
             <div className="w-full h-auto relative">
               <Lanyard />

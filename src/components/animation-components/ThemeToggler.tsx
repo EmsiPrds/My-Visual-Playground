@@ -118,7 +118,7 @@ export const LightThemeToggler = ({
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
-        "w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
+        "cursor-pointer w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
         "bg-white border-gray-300 hover:border-gray-400",
         "dark:border-gray-600 dark:hover:border-gray-500",
         "yellow:border-yellow-300 yellow:hover:border-yellow-400",
@@ -201,7 +201,7 @@ export const DarkThemeToggler = ({
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
-        "w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
+        "cursor-pointer w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
         "bg-black border-gray-800 hover:border-gray-700",
         "dark:border-gray-400 dark:hover:border-gray-300",
         "yellow:border-yellow-800 yellow:hover:border-yellow-700",
@@ -284,7 +284,7 @@ export const YellowThemeToggler = ({
       ref={buttonRef}
       onClick={handleClick}
       className={cn(
-        "w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
+        "cursor-pointer w-7 h-7 sm:w-10 sm:h-10 2xl:w-15 2xl:h-15 rounded-full transition-all border-2",
         "bg-yellow-400 border-yellow-500 hover:border-yellow-600",
         "dark:border-yellow-400 dark:hover:border-yellow-300",
         "yellow:border-yellow-600 yellow:hover:border-yellow-700",

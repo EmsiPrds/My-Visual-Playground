@@ -6,7 +6,6 @@ import MockupImg1 from "../assets/WayneWebsite.png";
 import StickerPeel from "../components/animation-components/StickerPeel";
 import { useBreakpoint } from "../lib/useBreakpoint";
 import ScrollingMockup from "./ScrollingMockup";
-import SmoothLink from "./SmoothLink";
 
 import CanvaLogo from "../assets/Design-Tools-Logos/Canva.svg";
 import FigmaLogo from "../assets/Design-Tools-Logos/Figma.svg";
@@ -236,25 +235,59 @@ export default function Hero() {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
-              <SmoothLink
-                to="#projects"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                className="text-xs sm:text-sm group relative z-10 px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 rounded-full font-semibold overflow-hidden hover:scale-105 transition-transform duration-300 bg-accent dark:bg-yellow-500 yellow:bg-yellow-500 text-white dark:text-gray-900 yellow:text-yellow-900"
-              >
-                <span className="relative flex items-center">View Resume</span>
-                <div className="absolute inset-0 bg-yellow-600 dark:bg-yellow-600 yellow:bg-yellow-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </SmoothLink>
+            <div
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              className="flex flex-row items-center justify-center gap-3 sm:gap-4 pt-2"
+            >
+              <button className="relative cursor-pointer px-6 py-2 overflow-hidden rounded-full border-2 border-accent bg-accent font-medium text-secondary shadow-inner group">
+                {/* <!-- Top border animation --> */}
+                <span className="absolute left-0 top-0 h-0 w-0 border-t-2 border-secondary transition-all duration-200 ease-out group-hover:w-full"></span>
 
-              <SmoothLink
-                to="#contact"
+                {/* <!-- Bottom border animation --> */}
+                <span className="absolute bottom-0 right-0 h-0 w-0 border-b-2 border-secondary transition-all duration-200 ease-out group-hover:w-full"></span>
+
+                {/* <!-- Top fill --> */}
+                <span className="absolute left-0 top-0 h-0 w-full bg-secondary transition-all duration-300 delay-200 ease-out group-hover:h-full"></span>
+
+                {/* <!-- Bottom fill --> */}
+                <span className="absolute bottom-0 left-0 h-0 w-full bg-secondary transition-all duration-300 delay-200 ease-out group-hover:h-full"></span>
+
+                {/* Dark overlay */}
+                <span className="absolute inset-0 h-full w-full bg-secondary opacity-0 transition-opacity duration-300 delay-300 group-hover:opacity-100"></span>
+
+                {/* Text */}
+                <span className="relative transition-colors duration-300 delay-200 ease-out group-hover:text-primary">
+                  View Resume
+                </span>
+              </button>
+
+              <button
+                id="contacts"
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                className="text-xs sm:text-sm px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 z-10 rounded-full font-semibold border-2 transition-colors duration-300 border-accent dark:border-yellow-500 yellow:border-yellow-600 text-accent dark:text-yellow-500 yellow:text-yellow-700 hover:bg-accent hover:text-white dark:hover:bg-yellow-500/10 yellow:hover:bg-yellow-200 dark:hover:text-yellow-400"
+                className="relative cursor-pointer px-6 py-2 overflow-hidden rounded-full border-2 border-accent bg-secondary font-medium text-primary shadow-inner group"
               >
-                Let's Connect
-              </SmoothLink>
+                {/* <!-- Top border animation --> */}
+                <span className="absolute left-0 top-0 h-0 w-0 border-t-2 border-accent transition-all duration-200 ease-out group-hover:w-full"></span>
+
+                {/* <!-- Bottom border animation --> */}
+                <span className="absolute bottom-0 right-0 h-0 w-0 border-b-2 border-accent transition-all duration-200 ease-out group-hover:w-full"></span>
+
+                {/* <!-- Top fill --> */}
+                <span className="absolute left-0 top-0 h-0 w-full bg-accent transition-all duration-300 delay-200 ease-out group-hover:h-full"></span>
+
+                {/* <!-- Bottom fill --> */}
+                <span className="absolute bottom-0 left-0 h-0 w-full bg-accent transition-all duration-300 delay-200 ease-out group-hover:h-full"></span>
+
+                {/* Dark overlay */}
+                <span className="absolute inset-0 h-full w-full bg-accent opacity-0 transition-opacity duration-300 delay-300 group-hover:opacity-100"></span>
+
+                {/* Text */}
+                <span className="relative transition-colors duration-300 delay-200 ease-out group-hover:text-white">
+                  Let's Connect
+                </span>
+              </button>
             </div>
 
             {/* Theme Togglers - Navigation Dots */}

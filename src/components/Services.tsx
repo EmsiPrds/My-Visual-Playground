@@ -138,10 +138,27 @@ export default function Services() {
             <div className="text-center">
               <button
                 onClick={() => scrollToSection("contact")}
-                className="px-8 py-4 bg-accent text-primary font-semibold rounded-full 
-                hover:bg-accent/90 shadow-md transition-all duration-300"
+                className="relative cursor-pointer px-6 py-2 overflow-hidden rounded-full border-2 border-accent bg-accent font-medium text-secondary shadow-inner group"
               >
-                Let's Work Together
+                {/* <!-- Top border animation --> */}
+                <span className="absolute left-0 top-0 h-0 w-0 border-t-2 border-secondary transition-all duration-200 ease-out group-hover:w-full"></span>
+
+                {/* <!-- Bottom border animation --> */}
+                <span className="absolute bottom-0 right-0 h-0 w-0 border-b-2 border-secondary transition-all duration-200 ease-out group-hover:w-full"></span>
+
+                {/* <!-- Top fill --> */}
+                <span className="absolute left-0 top-0 h-0 w-full bg-secondary transition-all duration-300 delay-200 ease-out group-hover:h-full"></span>
+
+                {/* <!-- Bottom fill --> */}
+                <span className="absolute bottom-0 left-0 h-0 w-full bg-secondary transition-all duration-300 delay-200 ease-out group-hover:h-full"></span>
+
+                {/* Dark overlay */}
+                <span className="absolute inset-0 h-full w-full bg-secondary opacity-0 transition-opacity duration-300 delay-300 group-hover:opacity-100"></span>
+
+                {/* Text */}
+                <span className="relative transition-colors duration-300 delay-200 ease-out group-hover:text-primary">
+                  Let's Work Together
+                </span>
               </button>
             </div>
           </div>
