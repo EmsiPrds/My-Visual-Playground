@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import aiAvatar from "../assets/AiAssistant.png";
 
 const ENCOURAGING_MESSAGES = [
+  "You can drag the stickers around the screen! 🎨",
   "Hi! Need help? 👋",
   "Got questions? Ask me!",
   "I'm here to help! 💬",

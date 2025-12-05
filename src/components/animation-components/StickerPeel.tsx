@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
-import { type CSSProperties, useEffect, useMemo, useRef } from "react";
+import { type CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 
 gsap.registerPlugin(Draggable);
 
@@ -19,6 +19,10 @@ interface StickerPeelProps {
   className?: string;
   shadowColor?: string;
   shadowGlowColor?: string;
+  index?: number;
+  onInteractionChange?: (isInteracting: boolean) => void;
+  tooltipText?: string;
+  tooltipDescription?: string;
 }
 
 interface CSSVars extends CSSProperties {
@@ -51,7 +55,13 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
   className = "",
   shadowColor = "black",
   shadowGlowColor,
+  index = 0,
+  onInteractionChange,
+  tooltipText,
+  tooltipDescription,
 }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Generate unique IDs for filters to avoid conflicts
   const filterId = useMemo(() => `dropShadow-${Math.random().toString(36).substr(2, 9)}`, []);
   const glowFilterId = useMemo(() => `glow-${Math.random().toString(36).substr(2, 9)}`, []);
@@ -63,12 +73,15 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
 
   const defaultPadding = 12;
 
+  // Track previous position for smooth transitions
+  const previousPositionRef = useRef<{ x: number; y: number } | null>(null);
+
   useEffect(() => {
     const target = dragTargetRef.current;
     if (!target) return;
 
-    let startX = 0,
-      startY = 0;
+    let newX = 0,
+      newY = 0;
 
     if (initialPosition === "center") {
       return;
@@ -79,11 +92,35 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
       initialPosition.x !== undefined &&
       initialPosition.y !== undefined
     ) {
-      startX = initialPosition.x;
-      startY = initialPosition.y;
+      newX = initialPosition.x;
+      newY = initialPosition.y;
     }
 
-    gsap.set(target, { x: startX, y: startY });
+    // If we have a previous position, animate smoothly; otherwise set immediately
+    if (previousPositionRef.current) {
+      const prevPos = previousPositionRef.current;
+      const distance = Math.sqrt(
+        Math.pow(newX - prevPos.x, 2) + Math.pow(newY - prevPos.y, 2)
+      );
+      
+      // Only animate if position actually changed and distance is significant
+      if (distance > 1) {
+        // Smooth, subtle animation - slow duration for organic feel
+        gsap.to(target, {
+          x: newX,
+          y: newY,
+          duration: 8 + Math.random() * 4, // 8-12 seconds for very subtle movement
+          ease: "power1.inOut", // Smooth ease for natural movement
+          overwrite: true,
+        });
+      }
+    } else {
+      // First render - set position immediately
+      gsap.set(target, { x: newX, y: newY });
+    }
+
+    // Update previous position
+    previousPositionRef.current = { x: newX, y: newY };
   }, [initialPosition]);
 
   useEffect(() => {
@@ -96,14 +133,27 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
       type: "x,y",
       bounds: boundsEl,
       inertia: true,
+      onDragStart(this: Draggable) {
+        // Bring sticker to front when dragging starts
+        gsap.set(target, { zIndex: 102, scale: 1.1 });
+        onInteractionChange?.(true);
+      },
       onDrag(this: Draggable) {
-        const rot = gsap.utils.clamp(-24, 24, this.deltaX * 0.4);
-        gsap.to(target, { rotation: rot, duration: 0.15, ease: "power1.out" });
+        // No rotation during drag - just movement
       },
       onDragEnd() {
-        const rotationEase = "power2.out";
         const duration = 0.8;
-        gsap.to(target, { rotation: 0, duration, ease: rotationEase });
+        // Return to normal z-index and scale
+        gsap.to(target, { 
+          scale: 1,
+          zIndex: 101,
+          duration, 
+          ease: "power2.out"
+        });
+        // Delay to allow drag end animation to complete
+        setTimeout(() => {
+          onInteractionChange?.(false);
+        }, duration * 1000);
       },
     });
 
@@ -265,14 +315,56 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
     <div
       className={`absolute cursor-grab active:cursor-grabbing transform-gpu ${className}`}
       ref={dragTargetRef}
-      style={cssVars}
+      style={{
+        ...cssVars,
+        zIndex: 101,
+        isolation: 'isolate', // Creates a new stacking context
+        '--sticker-index': index,
+        '--peel-direction': `${peelDirection}deg`,
+      } as CSSProperties & { '--sticker-index': number; '--peel-direction': string }}
     >
       <style
         dangerouslySetInnerHTML={{
           __html: `
+          @keyframes subtleFloat {
+            0%, 100% {
+              transform: translateY(0px) rotate(var(--peel-direction));
+            }
+            50% {
+              transform: translateY(-3px) rotate(var(--peel-direction));
+            }
+          }
+          
+          @keyframes subtlePulse {
+            0%, 100% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0.96;
+            }
+          }
+          
+          .sticker-container {
+            transform: rotate(var(--peel-direction));
+            animation: subtleFloat 4s ease-in-out infinite;
+            animation-delay: calc(var(--sticker-index, 0) * 0.2s);
+          }
+          
+          .sticker-container:hover {
+            animation: none;
+            transform: translateY(-2px) rotate(var(--peel-direction)) !important;
+            transition: transform 0.2s ease-out;
+          }
+          
+          .sticker-main {
+            animation: subtlePulse 3s ease-in-out infinite;
+            animation-delay: calc(var(--sticker-index, 0) * 0.15s);
+          }
+          
           .sticker-container:hover .sticker-main,
           .sticker-container.touch-active .sticker-main {
             clip-path: polygon(var(--sticker-start) var(--sticker-peelback-hover), var(--sticker-end) var(--sticker-peelback-hover), var(--sticker-end) var(--sticker-end), var(--sticker-start) var(--sticker-end)) !important;
+            animation: none;
           }
           .sticker-container:hover .sticker-flap,
           .sticker-container.touch-active .sticker-flap {
@@ -378,8 +470,24 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
           userSelect: "none",
           WebkitTouchCallout: "none",
           WebkitTapHighlightColor: "transparent",
-          transform: `rotate(${peelDirection}deg)`,
           transformOrigin: "center",
+        }}
+        onMouseEnter={() => {
+          if (tooltipText) {
+            if (tooltipTimeoutRef.current) {
+              clearTimeout(tooltipTimeoutRef.current);
+            }
+            tooltipTimeoutRef.current = setTimeout(() => {
+              setShowTooltip(true);
+            }, 500); // Show tooltip after 500ms hover
+          }
+        }}
+        onMouseLeave={() => {
+          if (tooltipTimeoutRef.current) {
+            clearTimeout(tooltipTimeoutRef.current);
+            tooltipTimeoutRef.current = null;
+          }
+          setShowTooltip(false);
         }}
       >
         <div className="sticker-main" style={stickerMainStyle}>
@@ -426,6 +534,33 @@ const StickerPeel: React.FC<StickerPeelProps> = ({
             />
           </div>
         </div>
+
+        {/* Tooltip */}
+        {showTooltip && tooltipText && (
+          <div
+            className="absolute z-[200] pointer-events-none"
+            style={{
+              bottom: "calc(100% + 12px)",
+              left: "50%",
+              transform: "translateX(-50%)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <div className="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-3 py-2 rounded-lg shadow-lg text-sm font-medium">
+              <div className="font-semibold">{tooltipText}</div>
+              {tooltipDescription && (
+                <div className="text-xs mt-1 opacity-90 font-normal max-w-[200px] whitespace-normal">
+                  {tooltipDescription}
+                </div>
+              )}
+              {/* Tooltip arrow */}
+              <div
+                className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-100"
+                style={{ marginTop: "-1px" }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

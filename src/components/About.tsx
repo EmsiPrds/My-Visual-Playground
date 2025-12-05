@@ -16,13 +16,13 @@ export default function About({ darkMode }: AboutProps) {
   return (
     <section
       id="about"
-      className={`py-10 sm:py-0 ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
+      className={`h-screen flex items-center justify-center overflow-hidden ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
     >
-      <div className="max-w-screen">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 items-center">
-          <div className="space-y-6 px-6 lg:ml-50">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 w-full h-full flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-6 items-center w-full h-full">
+          <div className="space-y-1.5 sm:space-y-2 md:space-y-2.5 lg:space-y-3 order-2 lg:order-1 flex flex-col justify-center h-full">
             <h2
-              className={`text-4xl sm:text-5xl font-bold font-bakbak ${
+              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-bakbak ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
@@ -33,11 +33,11 @@ export default function About({ darkMode }: AboutProps) {
             </h2>
 
             <p
-              className={`text-base sm:text-lg font-poppins ${
+              className={`text-xs sm:text-sm md:text-base lg:text-lg font-poppins ${
                 darkMode ? "text-primary" : "text-primary"
-              } leading-relaxed`}
+              } leading-tight sm:leading-snug`}
             >
-              Hi, I’m{" "}
+              Hi, I'm{" "}
               <span className="text-accent">
                 Mc Vincent Paredes, a UI Designer and Software Developer{" "}
               </span>
@@ -53,9 +53,9 @@ export default function About({ darkMode }: AboutProps) {
             </p>
 
             <p
-              className={`text-base sm:text-lg ${
+              className={`text-xs sm:text-sm md:text-base lg:text-lg ${
                 darkMode ? "text-gray-300" : "text-gray-600"
-              } leading-relaxed`}
+              } leading-tight sm:leading-snug`}
             >
               I specialize in{" "}
               <span className="text-accent">
@@ -72,19 +72,19 @@ export default function About({ darkMode }: AboutProps) {
             </p>
 
             {/* Highlights Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-2.5 pt-1 sm:pt-1.5 md:pt-2">
               {highlights.map((item, index) => (
                 <div
                   key={index}
-                  className={`p-3 sm:p-4 rounded-lg ${
+                  className={`p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-lg ${
                     darkMode ? "bg-gray-900/50" : "bg-gray-50"
                   } border ${
                     darkMode ? "border-gray-700" : "border-primary"
                   } hover:border-yellow-400 transition-all duration-300 hover:transform hover:scale-105`}
                 >
-                  <item.icon className="text-yellow-400 mb-2" size={24} />
+                  <item.icon className="text-yellow-400 mb-0.5 sm:mb-1 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                   <p
-                    className={`text-sm sm:text-base font-bakbak tracking-wide font-semibold ${
+                    className={`text-[10px] sm:text-xs md:text-sm lg:text-base font-bakbak tracking-wide font-semibold ${
                       darkMode ? "text-white" : "text-gray-900"
                     }`}
                   >
@@ -94,8 +94,8 @@ export default function About({ darkMode }: AboutProps) {
               ))}
             </div>
           </div>
-          <div className="relative ">
-            <div className="w-full h-auto relative">
+          <div className="relative order-1 lg:order-2 w-full h-full flex items-center justify-center">
+            <div className="w-full h-full relative flex justify-center items-center">
               <Lanyard />
             </div>
           </div>

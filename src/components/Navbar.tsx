@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import LogoBlack from "../assets/logo-plain-black.svg";
-import SmoothLink from "./SmoothLink";
 
 type Theme = "light" | "dark" | "yellow";
 
@@ -16,12 +15,37 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<Theme>("dark");
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      // Keep navbar visible when mobile menu is open
+      if (isOpen) {
+        setIsVisible(true);
+        return;
+      }
+      
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
+      
+      // Show navbar at the top of the page
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } 
+      // Hide navbar when scrolling down, show when scrolling up
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+    
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY, isOpen]);
 
   useEffect(() => {
     const updateTheme = () => {
@@ -66,14 +90,20 @@ export default function Navbar() {
     { name: "Gallery", href: "#gallery" },
   ];
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (href: string) => {
     setIsOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "backdrop-blur-lg shadow-lg bg-trasparent" : "bg-transparent"
+      } ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       {/* Navbar container */}
@@ -84,14 +114,18 @@ export default function Navbar() {
           {/* Desktop Left Links */}
           <div className="hidden md:flex items-center space-x-12 lg:space-x-15 xl:space-x-30 flex-1">
             {navLinks.slice(0, 3).map((link) => (
-              <SmoothLink
+              <a
                 key={link.name}
-                to={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
                 className={`relative group font-bakbak font-medium text-primary dark:text-secondary hover:text-accent transition-colors duration-300`}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-              </SmoothLink>
+              </a>
             ))}
           </div>
 
@@ -112,14 +146,18 @@ export default function Navbar() {
           {/* Desktop Right Links */}
           <div className="hidden md:flex items-center space-x-12 lg:space-x-15 xl:space-x-30 flex-1 justify-end">
             {navLinks.slice(3).map((link) => (
-              <SmoothLink
+              <a
                 key={link.name}
-                to={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
                 className={`relative group font-bakbak font-medium text-primary dark:text-secondary hover:text-accent transition-colors duration-300`}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
-              </SmoothLink>
+              </a>
             ))}
           </div>
 
@@ -169,10 +207,13 @@ export default function Navbar() {
         >
           <div className="px-4 pt-4 pb-6 space-y-1">
             {navLinks.map((link, index) => (
-              <SmoothLink
+              <a
                 key={link.name}
-                to={link.href}
-                onClick={handleLinkClick}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
                 className={`block w-full text-left px-4 py-3 rounded-lg font-bakbak font-medium ${
                   isDark
                     ? "text-secondary hover:bg-white/10"
@@ -186,7 +227,7 @@ export default function Navbar() {
                 }}
               >
                 {link.name}
-              </SmoothLink>
+              </a>
             ))}
           </div>
         </div>
