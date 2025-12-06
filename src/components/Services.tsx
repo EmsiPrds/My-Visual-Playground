@@ -69,7 +69,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50"
+      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-100 yellow:bg-gray-100"
     >
       <div
         className="relative w-[98vw] max-w-screen rounded-4xl
@@ -92,11 +92,11 @@ export default function Services() {
 
         <div className="container mx-auto px-6 py-12">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold font-bakbak text-center mb-4 text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold font-bakbak text-center mb-4 text-primary dark:text-secondary">
               What I <span className="text-[#FDCE00]">Do</span>
             </h2>
 
-            <p className="text-lg md:text-xl text-primary font-poppins text-center mb-12">
+            <p className="text-lg md:text-xl text-primary dark:text-secondary font-poppins text-center mb-12">
               I offer a range of creative and technical services that combine
               design thinking with development expertise. Whether you need a
               visually stunning website, a functional web app, or a reliable IT
@@ -115,7 +115,7 @@ export default function Services() {
                       isDesktop && setCursorImg(service.preview)
                     }
                     onMouseLeave={() => setCursorImg(null)}
-                    className="group bg-secondary/80 dark:bg-secondary/80 backdrop-blur-md 
+                    className="group bg-secondary/80 dark:bg-secondary backdrop-blur-md 
                     p-8 rounded-2xl border-2 border-primary hover:border-accent 
                     transition-all duration-300 shadow-md"
                   >

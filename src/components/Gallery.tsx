@@ -8,7 +8,7 @@ export default function Gallery({ darkMode }: GalleryProps) {
   return (
     <section
       id="art"
-      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-secondary yellow:bg-yellow-50 py-4 sm:py-6 md:py-8 px-2 sm:px-4 md:px-6"
+      className="min-h-screen flex items-center justify-center bg-gray-100 py-4 sm:py-6 md:py-8 px-2 sm:px-4 md:px-6"
     >
       <div className="relative w-full max-w-[98vw] sm:max-w-[95vw] md:max-w-[92vw] lg:max-w-[90vw] xl:max-w-screen rounded-2xl sm:rounded-3xl md:rounded-4xl px-3 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 lg:py-20 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl mx-auto">
         {/* Header */}

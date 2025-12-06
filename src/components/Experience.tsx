@@ -39,7 +39,7 @@ export default function Experience({ darkMode }: ResumeProps) {
   return (
     <section
       id="resume"
-      className={`py-24 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+      className="py-24 bg-gray-100"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">

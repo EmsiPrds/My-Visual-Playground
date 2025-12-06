@@ -64,14 +64,14 @@ export default function Projects() {
   return (
     <section
       id="services"
-      className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-secondary"
+      className="min-h-screen w-full flex items-center justify-center bg-gray-100"
     >
       <div className="w-7xl py-20 px-5">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16 px-2">
           <h2
             className="text-3xl font-bakbak sm:text-4xl md:text-5xl font-bold mb-4 leading-tight 
-              text-gray-900 dark:text-white"
+              text-primary "
           >
             Featured{" "}
             <span className="bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
@@ -79,7 +79,7 @@ export default function Projects() {
             </span>
           </h2>
 
-          <p className="text-base font-poppins sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
+          <p className="text-base font-poppins sm:text-lg text-primary max-w-2xl mx-auto px-4">
             A showcase of recent work spanning design, development, and
             infrastructure
           </p>
@@ -95,7 +95,7 @@ export default function Projects() {
               }
               className="group relative overflow-hidden rounded-xl cursor-pointer 
                 transition-all duration-300 hover:-translate-y-2 
-                bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl"
+                bg-white dark:bg-primary shadow-lg hover:shadow-2xl"
             >
               {/* Image */}
               <div className="relative w-full aspect-4/3 overflow-hidden">
