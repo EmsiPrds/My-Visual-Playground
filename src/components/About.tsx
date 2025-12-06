@@ -16,13 +16,13 @@ export default function About({ darkMode }: AboutProps) {
   return (
     <section
       id="about"
-      className={`h-screen flex items-center justify-center overflow-hidden ${darkMode ? "bg-gray-800" : "bg-gray-100"}`}
+      className="min-h-screen flex items-center justify-center overflow-visible bg-gray-100 "
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 w-full h-full flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3 md:gap-4 lg:gap-6 items-center w-full h-full">
-          <div className="space-y-1.5 sm:space-y-2 md:space-y-2.5 lg:space-y-3 order-2 lg:order-1 flex flex-col justify-center h-full">
+      <div className="max-w-screen w-full min-h-screen lg:h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center w-full lg:ml-30">
+          <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-3 order-2 lg:order-1 flex flex-col justify-center px-8 md:px-10 lg:px-15 py-5 sm:py-6 lg:py-0 relative z-10">
             <h2
-              className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-bakbak ${
+              className={`text-2xl text-center sm:text-left sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-bakbak ${
                 darkMode ? "text-white" : "text-gray-900"
               }`}
             >
@@ -33,7 +33,7 @@ export default function About({ darkMode }: AboutProps) {
             </h2>
 
             <p
-              className={`text-xs sm:text-sm md:text-base lg:text-lg font-poppins ${
+              className={`text-xs text-center sm:text-left sm:text-sm md:text-base lg:text-lg font-poppins ${
                 darkMode ? "text-primary" : "text-primary"
               } leading-tight sm:leading-snug`}
             >
@@ -53,7 +53,7 @@ export default function About({ darkMode }: AboutProps) {
             </p>
 
             <p
-              className={`text-xs sm:text-sm md:text-base lg:text-lg ${
+              className={`text-xs text-center sm:text-left sm:text-sm md:text-base lg:text-lg ${
                 darkMode ? "text-gray-300" : "text-gray-600"
               } leading-tight sm:leading-snug`}
             >
@@ -94,8 +94,8 @@ export default function About({ darkMode }: AboutProps) {
               ))}
             </div>
           </div>
-          <div className="relative order-1 lg:order-2 w-full h-full flex items-center justify-center">
-            <div className="w-full h-full relative flex justify-center items-center">
+          <div className="relative order-2 lg:order-2 w-full h-full lg:h-full flex items-center justify-center overflow-hidden">
+            <div className="w-full h-full relative flex justify-center items-center ">
               <Lanyard />
             </div>
           </div>
