@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import About from "./components/About";
 import AIAssistant from "./components/AiAssistant";
+import BackToTop from "./components/BackToTop";
 import ClickSpark from "./components/animation-components/ClickSpark";
 import Contact from "./components/Contacts";
 import Experience from "./components/Experience";
@@ -34,6 +35,7 @@ function App() {
           <Testimonials darkMode={false} />
           <Contact darkMode={false} />
           <Footer darkMode={false} />
+          <BackToTop />
           <AIAssistant />
         </div>
       </ClickSpark>
