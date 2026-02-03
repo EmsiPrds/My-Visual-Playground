@@ -4,7 +4,7 @@ interface GalleryProps {
   darkMode: boolean;
 }
 
-export default function Gallery({ darkMode }: GalleryProps) {
+export default function Gallery({ }: GalleryProps) {
   return (
     <section
       id="art"
@@ -13,22 +13,13 @@ export default function Gallery({ darkMode }: GalleryProps) {
       <div className="relative w-full max-w-[98vw] sm:max-w-[95vw] md:max-w-[92vw] lg:max-w-[90vw] xl:max-w-screen rounded-2xl sm:rounded-3xl md:rounded-4xl px-3 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 lg:py-20 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-14 w-full px-2">
-          <h2
-            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Arts &{" "}
+          <h2 className="text-4xl md:text-5xl font-bold font-bakbak text-center mb-4 text-primary dark:text-secondary">
+            Arts & {" "}
             <span className="bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
               Graphics Gallery
             </span>
           </h2>
-
-          <p
-            className={`text-xs sm:text-sm md:text-base lg:text-lg max-w-5xl mx-auto px-2 ${
-              darkMode ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
+            <p className="text-lg md:text-xl text-primary dark:text-secondary font-poppins text-center mb-12">
             A curated collection showcasing my digital art creations, graphic design projects, and visual experiments. Each piece represents a blend of creativity, technical skill, and artistic vision.
           </p>
         </div>
@@ -42,7 +33,7 @@ export default function Gallery({ darkMode }: GalleryProps) {
             justify-center
             overflow-hidden
             h-[280px]
-            min-[375px]:h-[320px]
+            min-[375px]:h-80
             sm:h-[400px]
             md:h-[500px]
             lg:h-[600px]
