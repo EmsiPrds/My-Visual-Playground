@@ -1,274 +1,226 @@
-import { Quote } from "lucide-react";
-import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { Quote, Star } from "lucide-react";
+import { motion } from "framer-motion";
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  image: string;
+  rating: number;
+}
 
 interface TestimonialsProps {
   darkMode: boolean;
 }
 
-export default function Testimonials({ darkMode }: TestimonialsProps) {
-  const testimonials = [
+export default function Testimonials({ darkMode: _darkMode }: TestimonialsProps) {
+  const testimonials: Testimonial[] = [
     {
       quote:
         "MVP Visuals transformed our digital presence with a stunning website that perfectly captures our brand. Their attention to detail and creative vision exceeded our expectations.",
       author: "Sarah Johnson",
       role: "CEO, TechStart Inc.",
-      image:
-        "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
+      rating: 5,
     },
     {
       quote:
         "Working with MVP Visuals on our network infrastructure was seamless. They delivered a robust, scalable solution that has significantly improved our operations.",
       author: "Michael Chen",
       role: "IT Director, Global Systems",
-      image:
-        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
+      rating: 5,
     },
     {
       quote:
         "The graphic design work for our rebrand was exceptional. MVP Visuals captured our vision and created a cohesive identity that resonates with our audience.",
       author: "Emily Rodriguez",
       role: "Marketing Lead, Creative Co.",
-      image:
-        "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
+      rating: 5,
     },
     {
       quote:
         "Outstanding service and incredible results! MVP Visuals helped us launch our e-commerce platform with a beautiful, user-friendly design that increased our sales by 40%.",
       author: "David Thompson",
       role: "Founder, ShopSmart",
-      image:
-        "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=200",
+      rating: 5,
     },
     {
       quote:
         "The team at MVP Visuals is professional, creative, and truly understands how to translate business needs into digital solutions. Highly recommended!",
       author: "Lisa Park",
       role: "Product Manager, InnovateLab",
-      image:
-        "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=200",
+      rating: 5,
     },
     {
       quote:
         "MVP Visuals delivered a mobile app that exceeded all our expectations. The user experience is flawless, and the development process was smooth and collaborative.",
       author: "James Wilson",
       role: "CTO, MobileFirst Solutions",
-      image:
-        "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=200",
+      rating: 5,
     },
   ];
 
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const sequenceRef = useRef<HTMLDivElement>(null);
-  const [sequenceWidth, setSequenceWidth] = useState(0);
-  const x = useMotionValue(0);
-  const offsetRef = useRef(0);
-  const speed = 30; // pixels per second
-
-  // Calculate sequence width
-  useEffect(() => {
-    const updateWidth = () => {
-      if (sequenceRef.current) {
-        const width = sequenceRef.current.getBoundingClientRect().width;
-        setSequenceWidth(width);
-      }
-    };
-
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
-  }, []);
-
-  // Smooth marquee animation
-  useAnimationFrame((_time, delta) => {
-    if (sequenceWidth <= 0) return;
-
-    const prefersReduced =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReduced || isHovered) {
-      return;
-    }
-
-    const deltaTime = Math.min(delta / 1000, 0.1);
-    const velocity = speed * deltaTime;
-
-    let nextOffset = offsetRef.current + velocity;
-    nextOffset = ((nextOffset % sequenceWidth) + sequenceWidth) % sequenceWidth;
-    offsetRef.current = nextOffset;
-
-    x.set(-nextOffset);
-  });
+  // Split testimonials for two rows
+  const firstRow = [...testimonials, ...testimonials];
+  const secondRow = [...testimonials.reverse(), ...testimonials];
 
   return (
     <section
       id="testimonials"
-      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-100 yellow:bg-gray-100 py-12 sm:py-16 md:py-20 lg:py-24"
+      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-100 yellow:bg-gray-100 py-4 sm:py-6 md:py-8 px-2 sm:px-4 md:px-6 transition-colors duration-500"
     >
-      <div className="relative w-[98vw] max-w-screen rounded-4xl sm:px-4 md:px-6 lg:px-8 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl py-12 sm:py-16 md:py-20 lg:py-24">
-        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-4 sm:px-6">
-          <h2
-            className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
-          >
-            Client{" "}
-            <span className="bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-              Testimonials
-            </span>
-          </h2>
-          <p
-            className={`text-sm sm:text-base md:text-lg ${
-              darkMode ? "text-gray-400" : "text-gray-600"
-            } max-w-2xl mx-auto`}
-          >
-            What our clients say about working with us
-          </p>
+      <div className="relative w-full max-w-[98vw] sm:max-w-[95vw] md:max-w-[92vw] lg:max-w-[90vw] xl:max-w-screen rounded-2xl sm:rounded-3xl md:rounded-4xl py-12 sm:py-16 md:py-24 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl mx-auto">
+        {/* Dynamic Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+          <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-yellow-400/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-yellow-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "2s" }} />
         </div>
 
-        <div
-          ref={containerRef}
-          className="w-full overflow-hidden relative"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* Fade gradients */}
-          <div
-            className={`absolute inset-y-0 left-0 z-10 w-24 pointer-events-none ${
-              darkMode
-                ? "bg-linear-to-r from-primary to-transparent"
-                : "bg-linear-to-r from-white to-transparent"
-            }`}
-          />
-          <div
-            className={`absolute inset-y-0 right-0 z-10 w-24 pointer-events-none ${
-              darkMode
-                ? "bg-linear-to-l from-primary to-transparent"
-                : "bg-linear-to-l from-white to-transparent"
-            }`}
-          />
-
+        <div className="container mx-auto px-4 relative z-10 mb-20 text-center">
           <motion.div
-            className="flex gap-4 sm:gap-6 md:gap-8 will-change-transform"
-            style={{ x }}
-            drag="x"
-            dragConstraints={{ left: -Infinity, right: Infinity }}
-            dragElastic={0}
-            dragMomentum={false}
-            onDrag={(_, info) => {
-              const currentX = x.get();
-              const newX = currentX + info.delta.x;
-              x.set(newX);
-              if (sequenceWidth > 0) {
-                const normalizedOffset =
-                  ((-newX % sequenceWidth) + sequenceWidth) % sequenceWidth;
-                offsetRef.current = normalizedOffset;
-              }
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div
-              ref={sequenceRef}
-              className="flex py-5 gap-4 sm:gap-6 md:gap-8"
+            <h2 className="text-5xl md:text-7xl font-bakbak mb-6 text-primary dark:text-white">
+              Client <span className="text-yellow-400">Voices</span>
+            </h2>
+            <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto font-poppins font-light leading-relaxed">
+              Discover how we've helped forward-thinking companies achieve their digital potential through innovation and design.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Infinite Carousel Container */}
+        <div className="relative w-full space-y-10 group">
+          {/* Row 1: Right to Left */}
+          <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+            <motion.div
+              className="flex gap-8 py-4 px-4"
+              animate={{
+                x: [0, "-50%"],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
             >
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={`original-${index}`}
-                  className={`shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] p-4 sm:p-6 md:p-8 rounded-xl relative ${
-                    darkMode ? "bg-gray-900" : "bg-gray-50"
-                  } border ${
-                    darkMode ? "border-gray-700" : "border-gray-200"
-                  } hover:border-yellow-400 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-xl hover:z-20 h-full flex flex-col`}
-                >
-                  <Quote className="text-yellow-400 mb-3 sm:mb-4" size={28} />
-
-                  <p
-                    className={`text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed grow ${
-                      darkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
-                  >
-                    "{testimonial.quote}"
-                  </p>
-
-                  <div className="flex items-center space-x-3 sm:space-x-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover shrink-0"
-                    />
-                    <div className="min-w-0">
-                      <p
-                        className={`font-semibold text-sm sm:text-base truncate ${
-                          darkMode ? "text-white" : "text-gray-900"
-                        }`}
-                      >
-                        {testimonial.author}
-                      </p>
-                      <p
-                        className={`text-xs sm:text-sm truncate ${
-                          darkMode ? "text-gray-400" : "text-gray-600"
-                        }`}
-                      >
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              {firstRow.map((t, i) => (
+                <TestimonialCard key={`row1-${i}`} testimonial={t} />
               ))}
-            </div>
+            </motion.div>
+          </div>
 
-            {/* Duplicate for seamless loop */}
-            <div className="flex gap-4 py-5 sm:gap-6 md:gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={`duplicate-${index}`}
-                  className={`shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] p-4 sm:p-6 md:p-8 rounded-xl relative ${
-                    darkMode ? "bg-gray-900" : "bg-gray-50"
-                  } border ${
-                    darkMode ? "border-gray-700" : "border-gray-200"
-                  } hover:border-yellow-400 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-xl hover:z-20 h-full flex flex-col`}
-                >
-                  <Quote className="text-yellow-400 mb-3 sm:mb-4" size={28} />
-
-                  <p
-                    className={`text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed grow ${
-                      darkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
-                  >
-                    "{testimonial.quote}"
-                  </p>
-
-                  <div className="flex items-center space-x-3 sm:space-x-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.author}
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover shrink-0"
-                    />
-                    <div className="min-w-0">
-                      <p
-                        className={`font-semibold text-sm sm:text-base truncate ${
-                          darkMode ? "text-white" : "text-gray-900"
-                        }`}
-                      >
-                        {testimonial.author}
-                      </p>
-                      <p
-                        className={`text-xs sm:text-sm truncate ${
-                          darkMode ? "text-gray-400" : "text-gray-600"
-                        }`}
-                      >
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          {/* Row 2: Left to Right */}
+          <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+            <motion.div
+              className="flex gap-8 py-4 px-4"
+              animate={{
+                x: ["-50%", 0],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 35,
+                  ease: "linear",
+                },
+              }}
+            >
+              {secondRow.map((t, i) => (
+                <TestimonialCard key={`row2-${i}`} testimonial={t} />
               ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-24 flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center"
+          >
+            <div className="flex -space-x-3 mb-4">
+              {testimonials.slice(0, 4).map((t, i) => (
+                <img
+                  key={i}
+                  src={t.image}
+                  alt={t.author}
+                  className="w-10 h-10 rounded-full border-2 border-white dark:border-[#050505] object-cover shadow-sm"
+                />
+              ))}
+              <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center text-[10px] font-bakbak text-primary border-2 border-white dark:border-[#050505] shadow-sm">
+                +50
+              </div>
             </div>
+            <p className="text-sm font-poppins font-medium text-gray-400 tracking-wider">
+              JOINED BY <span className="text-primary dark:text-white">50+ INDUSTRY LEADERS</span>
+            </p>
           </motion.div>
         </div>
       </div>
     </section>
+  );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <motion.div
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="relative w-[380px] min-w-[380px] p-8 rounded-3xl overflow-hidden
+                 bg-white/40 dark:bg-white/5 backdrop-blur-[12px]
+                 border border-white/50 dark:border-white/10
+                 shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-none
+                 flex flex-col gap-6 cursor-default transition-all duration-300"
+    >
+      {/* Subtle Gradient Accent */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 dark:bg-yellow-400/5 blur-3xl rounded-full -mr-16 -mt-16 pointer-events-none" />
+
+      {/* Quote Icon */}
+      <div className="flex items-center justify-between">
+        <div className="flex gap-0.5">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} size={14} className="fill-yellow-400 text-yellow-400" />
+          ))}
+        </div>
+        <Quote size={28} className="text-yellow-400/20" />
+      </div>
+
+      {/* Quote Text */}
+      <p className="text-base font-poppins font-normal leading-relaxed text-gray-700 dark:text-gray-300 whitespace-normal line-clamp-4">
+        "{testimonial.quote}"
+      </p>
+
+      {/* Author Profile */}
+      <div className="flex items-center gap-4 pt-4 border-t border-gray-100 dark:border-white/5">
+        <div className="h-12 w-12 rounded-2xl overflow-hidden shadow-inner">
+          <img
+            src={testimonial.image}
+            alt={testimonial.author}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-bakbak text-primary dark:text-white uppercase tracking-tight">
+            {testimonial.author}
+          </span>
+          <span className="text-[11px] font-poppins text-gray-500 dark:text-gray-500 font-medium">
+            {testimonial.role}
+          </span>
+        </div>
+      </div>
+    </motion.div>
   );
 }
