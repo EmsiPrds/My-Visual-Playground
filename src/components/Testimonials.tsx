@@ -74,7 +74,7 @@ export default function Testimonials({ darkMode: _darkMode }: TestimonialsProps)
       id="testimonials"
       className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-100 yellow:bg-gray-100 py-4 sm:py-6 md:py-8 px-2 sm:px-4 md:px-6 transition-colors duration-500"
     >
-      <div className="relative w-full max-w-[98vw] sm:max-w-[95vw] md:max-w-[92vw] lg:max-w-[90vw] xl:max-w-screen rounded-2xl sm:rounded-3xl md:rounded-4xl py-12 sm:py-16 md:py-24 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl mx-auto">
+      <div className="relative w-full max-w-[98vw] sm:max-w-[95vw] md:max-w-[92vw] lg:max-w-[90vw] xl:max-w-screen rounded-2xl sm:rounded-3xl md:rounded-4xl py-12 sm:py-16 md:py-24 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-primary yellow:bg-yellow-100 mx-auto">
         {/* Dynamic Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
           <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-yellow-400/20 rounded-full blur-[120px] animate-pulse" />

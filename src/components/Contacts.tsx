@@ -1,11 +1,12 @@
-import { Github, Linkedin, Mail, Send, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Twitter, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface ContactProps {
   darkMode: boolean;
 }
 
-export default function Contact({ darkMode }: ContactProps) {
+export default function Contact({ darkMode: _darkMode }: ContactProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,174 +28,158 @@ export default function Contact({ darkMode }: ContactProps) {
   return (
     <section
       id="contact"
-      className="py-24 bg-gray-100"
+      className="relative min-h-screen flex items-center justify-center bg-gray-100 dark:bg-primary yellow:bg-yellow-100 py-24 px-4 sm:px-6 transition-colors duration-500 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2
-            className={`text-4xl font-bold mb-4 ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
+      {/* Dynamic Background Elements - Full Section Coverage */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-yellow-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 animate-pulse" style={{ animationDelay: "2s" }} />
+      </div>
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-start lg:items-center">
+          {/* Left Side: Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-12"
           >
-            Let's Create Something{" "}
-            <span className="bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-              Innovative Together
-            </span>
-          </h2>
-          <p
-            className={`text-lg ${
-              darkMode ? "text-gray-400" : "text-gray-600"
-            } max-w-2xl mx-auto`}
-          >
-            Have a project in mind? We'd love to hear from you.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className={`block text-sm font-medium mb-2 ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    darkMode
-                      ? "bg-gray-900 border-gray-700 text-white"
-                      : "bg-white border-gray-300 text-gray-900"
-                  } focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all`}
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className={`block text-sm font-medium mb-2 ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    darkMode
-                      ? "bg-gray-900 border-gray-700 text-white"
-                      : "bg-white border-gray-300 text-gray-900"
-                  } focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all`}
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className={`block text-sm font-medium mb-2 ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={6}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className={`w-full px-4 py-3 rounded-lg border ${
-                    darkMode
-                      ? "bg-gray-900 border-gray-700 text-white"
-                      : "bg-white border-gray-300 text-gray-900"
-                  } focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all resize-none`}
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="group w-full px-8 py-4 bg-linear-to-r from-yellow-400 to-yellow-500 text-white rounded-lg font-semibold hover:scale-105 transition-transform duration-300 flex items-center justify-center space-x-2"
-              >
-                <span>Send Message</span>
-                <Send
-                  size={20}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </button>
-            </form>
-          </div>
-
-          <div className="flex flex-col justify-center space-y-8">
             <div>
-              <h3
-                className={`text-2xl font-bold mb-4 ${
-                  darkMode ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Get in Touch
-              </h3>
-              <p
-                className={`text-lg ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                } mb-4`}
-              >
-                Whether you need a stunning website, creative graphics, or
-                robust network infrastructure, we're here to help bring your
-                vision to life.
+              <h2 className="text-6xl md:text-8xl font-bakbak mb-8 text-primary dark:text-white yellow:text-yellow-900 leading-none">
+                Get In <span className="text-yellow-400">Touch</span>
+              </h2>
+              <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 yellow:text-yellow-800/80 max-w-lg font-poppins font-light leading-relaxed">
+                Elevating your digital presence through strategic design and
+                robust technical solutions. Let's discuss your next project.
               </p>
-              <a
-                href="mailto:contact@mvpvisuals.com"
-                className={`text-lg font-semibold ${
-                  darkMode ? "text-yellow-400" : "text-yellow-600"
-                } hover:text-yellow-400 transition-colors`}
-              >
-                contact@mvpvisuals.com
-              </a>
             </div>
 
-            <div>
-              <h4
-                className={`text-lg font-semibold mb-4 ${
-                  darkMode ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Follow Us
-              </h4>
-              <div className="flex space-x-4">
+            <div className="space-y-8">
+              <div className="flex items-center gap-6 group">
+                <div className="w-14 h-14 rounded-3xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
+                  <Mail size={28} />
+                </div>
+                <div>
+                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">Send an Email</p>
+                  <a href="mailto:contact@mvpvisuals.com" className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors">
+                    contact@mvpvisuals.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6 group">
+                <div className="w-14 h-14 rounded-3xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
+                  <MapPin size={28} />
+                </div>
+                <div>
+                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">Our Location</p>
+                  <p className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900">
+                    Worldwide / Remote
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6 group">
+                <div className="w-14 h-14 rounded-3xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
+                  <Phone size={28} />
+                </div>
+                <div>
+                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">Voice Call</p>
+                  <a href="tel:+1234567890" className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors">
+                    +1-234-567-890
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-10">
+              <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-8">Digital Footprint</p>
+              <div className="flex flex-wrap gap-5">
                 {socialLinks.map((link, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={link.href}
-                    aria-label={link.label}
-                    className={`w-12 h-12 rounded-lg ${
-                      darkMode
-                        ? "bg-gray-900 text-gray-400 hover:bg-yellow-400 hover:text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-yellow-400 hover:text-white"
-                    } flex items-center justify-center transition-all duration-300 hover:scale-110`}
+                    whileHover={{ y: -8, scale: 1.15 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-14 h-14 rounded-2xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-primary dark:text-white yellow:text-yellow-900 hover:bg-yellow-400 hover:text-primary transition-all duration-500 shadow-sm border border-transparent hover:border-yellow-400/20"
                   >
-                    <link.icon size={20} />
-                  </a>
+                    <link.icon size={24} />
+                  </motion.a>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
+
+          {/* Right Side: Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            {/* Form Backdrop Card */}
+            <div className="bg-gray-50/50 dark:bg-white/5 yellow:bg-yellow-50/50 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-gray-100 dark:border-white/10 yellow:border-yellow-200 shadow-xl">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1">
+                      Identity
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1">
+                      Contact Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      placeholder="email@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1">
+                      Brief / Message
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      placeholder="Tell us about your project..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white resize-none"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full py-5 bg-yellow-400 hover:bg-yellow-500 text-primary font-bakbak text-xl rounded-2xl shadow-2xl shadow-yellow-400/30 flex items-center justify-center gap-4 transition-all"
+                >
+                  Initiate Project
+                  <Send size={22} className="group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </form>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
