@@ -31,7 +31,7 @@ function App() {
           <Skills darkMode={false} />
           <Projects />
           <Gallery darkMode={false} />
-          <Experience darkMode={false} />
+          <Experience />
           <Testimonials darkMode={false} />
           <Contact darkMode={false} />
           <Footer darkMode={false} />

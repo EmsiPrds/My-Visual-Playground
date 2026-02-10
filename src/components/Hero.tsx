@@ -3,7 +3,7 @@ import MockupImg from "../assets/E-legislative.png";
 import FocusedImg from "../assets/focus.png";
 import SmileImg from "../assets/smiling.png";
 import MockupImg1 from "../assets/WayneWebsite.png";
-import ScrollingMockup from "./ScrollingMockup";
+import ScrollingMockup from "../components/animation-components/ScrollingMockup";
 import {
   DarkThemeToggler,
   LightThemeToggler,
@@ -164,16 +164,14 @@ export default function Hero() {
               <img
                 src={FocusedImg}
                 alt="Focused version"
-                className={`h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${
-                  hovered ? "opacity-0" : "opacity-100"
-                }`}
+                className={`h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${hovered ? "opacity-0" : "opacity-100"
+                  }`}
               />
               <img
                 src={SmileImg}
                 alt="Smiling version"
-                className={`absolute h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${
-                  hovered ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${hovered ? "opacity-100" : "opacity-0"
+                  }`}
               />
             </div>
           </div>

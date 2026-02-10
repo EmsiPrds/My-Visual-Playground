@@ -105,13 +105,11 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     isUpdatingRef.current = true;
 
-    const { scrollTop, containerHeight, scrollContainer } = getScrollData();
+    const { scrollTop, containerHeight } = getScrollData();
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
 
-    const endElement = useWindowScroll
-      ? (document.querySelector('.scroll-stack-end') as HTMLElement | null)
-      : (scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement | null);
+    const endElement = scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement | null;
 
     const endElementTop = endElement ? getElementOffset(endElement) : 0;
 
@@ -269,13 +267,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, [handleScroll, useWindowScroll]);
 
   useLayoutEffect(() => {
-    if (!useWindowScroll && !scrollerRef.current) return;
+    if (!scrollerRef.current) return;
 
-    const cards = Array.from(
-      useWindowScroll
-        ? document.querySelectorAll('.scroll-stack-card')
-        : (scrollerRef.current?.querySelectorAll('.scroll-stack-card') ?? [])
-    ) as HTMLElement[];
+    const cards = Array.from(scrollerRef.current?.querySelectorAll('.scroll-stack-card') ?? []) as HTMLElement[];
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
 
@@ -326,18 +320,18 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
   return (
     <div
-      className={`relative w-full h-full overflow-y-auto overflow-x-visible ${className}`.trim()}
+      className={`relative w-full ${useWindowScroll ? '' : 'h-full overflow-y-auto'} overflow-x-visible ${className}`.trim()}
       ref={scrollerRef}
       style={{
-        overscrollBehavior: 'contain',
+        overscrollBehavior: useWindowScroll ? 'auto' : 'contain',
         WebkitOverflowScrolling: 'touch',
         scrollBehavior: 'smooth',
         WebkitTransform: 'translateZ(0)',
         transform: 'translateZ(0)',
-        willChange: 'scroll-position'
+        willChange: useWindowScroll ? 'auto' : 'scroll-position'
       }}
     >
-      <div className="scroll-stack-inner pt-[20vh] px-20 pb-200 min-h-screen">
+      <div className="scroll-stack-inner pt-[10vh] px-4 md:px-20 pb-[200px] min-h-screen">
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />
