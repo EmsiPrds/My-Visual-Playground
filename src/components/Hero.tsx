@@ -3,7 +3,7 @@ import MockupImg from "../assets/E-legislative.png";
 import FocusedImg from "../assets/focus.png";
 import SmileImg from "../assets/smiling.png";
 import MockupImg1 from "../assets/WayneWebsite.png";
-import ScrollingMockup from "../components/animation-components/ScrollingMockup";
+import ScrollingMockup from "./animation-components/ScrollingMockup";
 import {
   DarkThemeToggler,
   LightThemeToggler,
@@ -24,7 +24,6 @@ export default function Hero() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
-
 
   // Theme initialization is handled in main.tsx
 
@@ -56,7 +55,10 @@ export default function Hero() {
         </div>
 
         {/* Hero content */}
-        <div className="relative w-full h-full text-center flex flex-col justify-between animate-fadeIn" id="hero-content">
+        <div
+          className="relative w-full h-full text-center flex flex-col justify-between animate-fadeIn"
+          id="hero-content"
+        >
           {/* Hero text contents */}
           <div className="relative h-[50vh] flex flex-col justify-center items-center space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-3 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-15 pt-20 sm:pt-16 md:pt-20 lg:pt-40 xl:pt-35 pb-2 sm:pb-4 z-50">
             <h1
@@ -164,14 +166,16 @@ export default function Hero() {
               <img
                 src={FocusedImg}
                 alt="Focused version"
-                className={`h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${hovered ? "opacity-0" : "opacity-100"
-                  }`}
+                className={`h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${
+                  hovered ? "opacity-0" : "opacity-100"
+                }`}
               />
               <img
                 src={SmileImg}
                 alt="Smiling version"
-                className={`absolute h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${hovered ? "opacity-100" : "opacity-0"
-                  }`}
+                className={`absolute h-auto max-h-[60vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[50vh] w-auto max-w-[100vw] sm:max-w-[380px] md:max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] object-contain object-bottom transition-opacity duration-700 ease-in-out ${
+                  hovered ? "opacity-100" : "opacity-0"
+                }`}
               />
             </div>
           </div>
