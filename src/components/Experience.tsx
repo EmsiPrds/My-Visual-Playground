@@ -1,247 +1,249 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { Briefcase, Download, GraduationCap } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import {
+    Briefcase,
+    GraduationCap,
+    Award,
+    Download,
+    Calendar,
+    ChevronRight,
+    Shield,
+    Cpu,
+    Network
+} from "lucide-react";
 
-interface ResumeItem {
-    type: "education" | "experience" | "cta";
+interface ExperienceItem {
     title: string;
-    subtitle: string;
-    year?: string;
+    company: string;
+    period: string;
+    description: string;
+    type: "work" | "education";
     icon: React.ReactNode;
-    isCTA?: boolean;
 }
 
-interface ExperienceProps {
+interface CertificationItem {
+    title: string;
+    year: string;
+    description: string;
+    icon: React.ReactNode;
+    color: string;
 }
 
-export default function Experience({ }: ExperienceProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    const education = [
+export default function Experience() {
+    const experiences: ExperienceItem[] = [
         {
-            degree: "Bachelor of Science in Computer Science",
-            school: "Tech University",
-            year: "2018 - 2022",
+            title: "Frontend Software Developer / UI/UX Designer / Network Technician",
+            company: "Quantum Cloud Corporation",
+            period: "2024 - Present",
+            description: "Currently leading frontend development and crafting seamless user experiences while managing complex network infrastructures.",
+            type: "work",
+            icon: <Cpu className="w-5 h-5" />
         },
         {
-            degree: "Cisco Certified Network Associate (CCNA)",
-            school: "Cisco Networking Academy",
-            year: "2021",
-        },
-    ];
-
-    const experience = [
-        {
-            position: "Senior Web Developer & Designer",
-            company: "MVP Visuals",
-            year: "2022 - Present",
+            title: "Frontend Web Developer Intern",
+            company: "Archicoders Digital Inc.",
+            period: "2024",
+            description: "Collaborated in building high-performance web applications and refining frontend architectures using React and secondary technologies.",
+            type: "work",
+            icon: <Briefcase className="w-5 h-5" />
         },
         {
-            position: "UI/UX Designer",
-            company: "Creative Digital Agency",
-            year: "2020 - 2022",
-        },
-        {
-            position: "Network Technician",
-            company: "Enterprise Solutions Inc.",
-            year: "2019 - 2020",
-        },
-    ];
-
-    const items: ResumeItem[] = [
-        ...education.map((edu) => ({
-            type: "education" as const,
-            title: edu.degree,
-            subtitle: edu.school,
-            year: edu.year,
-            icon: <GraduationCap size={20} />,
-        })),
-        ...experience.map((exp) => ({
-            type: "experience" as const,
-            title: exp.position,
-            subtitle: exp.company,
-            year: exp.year,
-            icon: <Briefcase size={20} />,
-        })),
-        {
-            type: "cta",
-            title: "Ready to take the next step?",
-            subtitle: "Download my full resume for more details or let's connect to discuss how I can help your team.",
-            icon: <Download size={24} />,
-            isCTA: true
+            title: "Graduated Bachelor of Science in Information Technology",
+            company: "Polytechnic University of the Philippines - Lopez campus",
+            period: "2024",
+            description: "Solid foundation in software engineering, web development, and enterprise networking solutions.",
+            type: "education",
+            icon: <GraduationCap className="w-5 h-5" />
         }
     ];
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"],
-    });
-
-    const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+    const certifications: CertificationItem[] = [
+        {
+            title: "TP-Link Network Associate",
+            year: "2024",
+            description: "Enterprise Routing and Switching specialist certification.",
+            icon: <Network className="w-6 h-6" />,
+            color: "bg-accent"
+        },
+        {
+            title: "Civil Service Exam Passer",
+            year: "Professional Level",
+            description: "Professional Level Eligibility (Philippine Civil Service Commission).",
+            icon: <Shield className="w-6 h-6" />,
+            color: "bg-primary dark:bg-white/10"
+        },
+        {
+            title: "Computer System Servicing National Certificate",
+            year: "2019",
+            description: "National Certificate for hardware repair, networking, and maintenance.",
+            icon: <Award className="w-6 h-6" />,
+            color: "bg-accent"
+        }
+    ];
 
     return (
         <section
-            ref={containerRef}
-            id="resume"
-            className="relative bg-gray-100 dark:bg-gray-950 yellow:bg-gray-100"
-            style={{ height: `${(items.length + 1) * 100}vh` }}
+            id="experience"
+            className="relative py-24 sm:py-32 overflow-hidden bg-gray-100 dark:bg-[#050505] yellow:bg-accent/5 transition-colors duration-500"
         >
-            <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden" style={{ perspective: "1000px" }}>
-                {/* Header - Stays visible slightly moved up as items stack */}
-                <motion.div
-                    className="text-center mb-12 px-4 z-10"
-                    style={{
-                        opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0.8]),
-                        y: useTransform(scrollYProgress, [0, 0.1], [0, -20])
-                    }}
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary dark:text-secondary font-bakbak">
-                        Professional <span className="text-yellow-500">Background</span>
-                    </h2>
-                    <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 yellow:text-gray-700 max-w-2xl mx-auto font-poppins">
-                        Credentials and roles presented as a smooth stackable card experience
-                    </p>
-                </motion.div>
+            {/* Dynamic Background Effects */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+                <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "2s" }} />
+            </div>
 
-                {/* Cards Stack */}
-                <div
-                    className="relative w-full max-w-6xl px-4 h-[650px] flex items-center justify-center"
-                    style={{ transformStyle: "preserve-3d" }}
-                >
-                    {items.map((item, index) => {
-                        const total = items.length;
+            <div className="container mx-auto px-6 relative z-10">
+                {/* Section Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 md:mb-28 gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="max-w-2xl"
+                    >
+                        <h2 className="text-5xl md:text-7xl font-bakbak mb-6 text-primary dark:text-white leading-tight">
+                            Professional <span className="text-accent">Journey</span>
+                        </h2>
+                        <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 yellow:text-gray-700 font-poppins font-light leading-relaxed">
+                            A showcase of my career milestones, academic background, and technical certifications.
+                        </p>
+                    </motion.div>
 
-                        // Entry Y: starts at 800, reaches 0 at its slot
-                        const entryY = useTransform(smoothProgress, [Math.max(0, (index - 0.5) / total), index / total], [800, 0]);
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileHover={{ scale: 1.05, y: -4 }}
+                        whileTap={{ scale: 0.98 }}
+                        viewport={{ once: true }}
+                        className="group flex items-center gap-3 px-10 py-5 bg-accent hover:bg-accent/90 text-primary font-bakbak text-lg rounded-2xl shadow-2xl shadow-accent/20 transition-all duration-300"
+                    >
+                        <Download className="w-6 h-6 group-hover:animate-bounce" />
+                        <span>Download Full CV</span>
+                    </motion.button>
+                </div>
 
-                        // Scale logic: 
-                        // 1.0 when active
-                        // Progressively smaller as index increases past it
-                        const scale = useTransform(
-                            smoothProgress,
-                            [index / total, 1],
-                            [1, 1 - (total - index) * 0.04]
-                        );
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24">
+                    {/* Experiences Column */}
+                    <div className="lg:col-span-7">
+                        <div className="flex items-center gap-4 mb-12">
+                            <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
+                                <Briefcase className="w-7 h-7" />
+                            </div>
+                            <h3 className="text-3xl font-bakbak text-primary dark:text-white uppercase tracking-tight">
+                                Experiences
+                            </h3>
+                        </div>
 
-                        // Blur logic:
-                        // 0px while incoming and while active.
-                        // Only start blurring after the NEXT card has stacked on top of it.
-                        // Max blur only reached when it's 2+ layers deep.
-                        const blurValue = useTransform(
-                            smoothProgress,
-                            [(index + 1) / total, (index + 2) / total],
-                            [0, 4]
-                        );
-
-                        const blurOverlay = useTransform(blurValue, (v) => v > 0 ? `blur(${v}px)` : "blur(0px)");
-
-                        // Opacity logic:
-                        // Fade in on entry
-                        // Slight fade when receding
-                        const opacity = useTransform(
-                            smoothProgress,
-                            [Math.max(0, (index - 0.5) / total), index / total, 1],
-                            [0, 1, 0.75]
-                        );
-
-                        // 3D Tilt during entry - Noticeable but elegant range
-                        const rotateX = useTransform(
-                            smoothProgress,
-                            [Math.max(0, (index - 0.5) / total), index / total],
-                            [14, 0]
-                        );
-                        const rotateY = useTransform(
-                            smoothProgress,
-                            [Math.max(0, (index - 0.5) / total), index / total],
-                            [-14, 0]
-                        );
-
-                        // Receding Y offset (stacking visual)
-                        const recedingY = useTransform(
-                            smoothProgress,
-                            [index / total, 1],
-                            [0, -(total - index) * 25]
-                        );
-
-                        // Combined Y position
-                        const y = useTransform(
-                            [entryY, recedingY],
-                            ([latestEntryY, latestRecedingY]) => (latestEntryY as number) + (latestRecedingY as number)
-                        );
-
-                        return (
-                            <motion.div
-                                key={index}
-                                className={`absolute inset-0 flex items-center justify-center p-4 md:p-8`}
-                                style={{
-                                    zIndex: index,
-                                    y: y,
-                                    opacity,
-                                    scale,
-                                    rotateX,
-                                    rotateY,
-                                    transformStyle: "preserve-3d",
-                                    perspective: "1200px" // Ensure solid 3D base
-                                }}
-                            >
-                                <div
-                                    className={`w-full max-w-4xl min-h-[350px] p-10 md:p-14 rounded-[3.5rem] border ${item.isCTA
-                                        ? "bg-yellow-500 border-yellow-400 text-white shadow-[0_45px_100px_rgba(234,179,8,0.4)] ring-1 ring-white/20 backdrop-blur-xl"
-                                        : "bg-white/90 border-gray-100 text-gray-900 shadow-xl dark:bg-gray-900/90 dark:border-gray-800 dark:text-gray-200 yellow:bg-yellow-100/90 yellow:border-yellow-200 yellow:text-gray-900 backdrop-blur-lg"
-                                        } relative overflow-hidden isolate group transition-all duration-500`}
+                        <div className="space-y-10 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-px before:bg-gray-200 dark:before:bg-white/10 yellow:before:bg-yellow-200">
+                            {experiences.map((exp, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className="relative pl-12 group"
                                 >
-                                    {/* Internal Blur Overlay - Prevents GPU clipping on 3D transforms */}
-                                    {!item.isCTA && (
-                                        <motion.div
-                                            className="absolute inset-0 pointer-events-none z-50 backdrop-blur-none"
-                                            style={{
-                                                backdropFilter: blurOverlay,
-                                                WebkitBackdropFilter: blurOverlay
-                                            }}
-                                        />
-                                    )}
-                                    <div className={`w-20 h-20 rounded-3xl ${item.isCTA ? "bg-white/20" : "bg-yellow-500"} flex items-center justify-center text-white shadow-xl shrink-0`}>
-                                        {React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, { size: 32 })}
+                                    {/* Timeline Marker */}
+                                    <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-white dark:bg-[#0a0a0a] yellow:bg-accent/10 border border-gray-100 dark:border-white/10 yellow:border-accent/20 flex items-center justify-center z-10 group-hover:border-accent transition-colors duration-300 shadow-sm">
+                                        <span className="text-accent">{exp.icon}</span>
                                     </div>
 
-                                    <div className="flex-1 text-center md:text-left">
-                                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
-                                            <h3 className={`text-2xl md:text-3xl font-bold font-bakbak ${item.isCTA ? "text-white" : "text-primary dark:text-secondary"}`}>{item.title}</h3>
-                                            {item.year && (
-                                                <span className="text-sm font-bold px-4 py-1.5 rounded-full bg-yellow-50 text-yellow-600 dark:bg-gray-800 dark:text-yellow-400 whitespace-nowrap font-poppins">
-                                                    {item.year}
-                                                </span>
-                                            )}
+                                    <div className="p-8 rounded-[2rem] bg-gray-50/50 dark:bg-white/[0.03] yellow:bg-accent/5 backdrop-blur-xl border border-gray-100 dark:border-white/5 yellow:border-accent/10 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-500">
+                                        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                                            <span className="text-xs font-bold text-accent font-poppins uppercase tracking-widest flex items-center gap-2">
+                                                <Calendar className="w-3.5 h-3.5" />
+                                                {exp.period}
+                                            </span>
+                                            <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${exp.type === 'work' ? 'bg-accent/10 text-accent' : 'bg-primary/20 text-primary dark:bg-white/10 dark:text-white'}`}>
+                                                {exp.type}
+                                            </span>
                                         </div>
-                                        <p className={`text-xl mb-8 leading-relaxed font-poppins ${item.isCTA ? "text-yellow-50" : "text-gray-600 dark:text-gray-400 yellow:text-gray-700"}`}>
-                                            {item.subtitle}
+                                        <h4 className="text-2xl font-bakbak text-primary dark:text-white mb-2 leading-tight group-hover:text-accent transition-colors">
+                                            {exp.title}
+                                        </h4>
+                                        <p className="text-lg font-poppins font-medium text-gray-600 dark:text-gray-400 yellow:text-gray-600 mb-5">
+                                            {exp.company}
                                         </p>
-
-                                        {item.isCTA ? (
-                                            <button className="group/btn px-10 py-5 bg-white text-yellow-500 rounded-2xl font-bold text-lg hover:scale-105 transition-all duration-300 flex items-center space-x-4 shadow-2xl shadow-yellow-600/20 active:scale-95 font-bakbak">
-                                                <Download size={24} className="group-hover/btn:translate-y-1 transition-transform" />
-                                                <span>Download Full Resume</span>
-                                            </button>
-                                        ) : (
-                                            <div className="flex items-center gap-3 text-yellow-500 font-semibold font-poppins">
-                                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-                                                <span className="text-sm uppercase tracking-widest">{item.type}</span>
-                                            </div>
-                                        )}
+                                        <p className="text-gray-500 dark:text-gray-500 yellow:text-gray-700 font-poppins text-base leading-relaxed">
+                                            {exp.description}
+                                        </p>
                                     </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
 
-                                    {/* Aesthetic Corner Accent */}
-                                    <div className={`absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity ${item.isCTA ? "text-white" : "text-yellow-500"}`}>
-                                        {React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, { size: 48 })}
+                    {/* Certifications Column */}
+                    <div className="lg:col-span-5">
+                        <div className="flex items-center gap-4 mb-12">
+                            <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
+                                <Award className="w-7 h-7" />
+                            </div>
+                            <h3 className="text-3xl font-bakbak text-primary dark:text-white uppercase tracking-tight">
+                                Certifications
+                            </h3>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-6">
+                            {certifications.map((cert, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    whileHover={{ x: 8 }}
+                                    className="group p-8 rounded-[2rem] bg-gray-50/50 dark:bg-white/[0.03] yellow:bg-accent/5 border border-gray-100 dark:border-white/5 yellow:border-accent/10 shadow-sm hover:shadow-lg transition-all duration-300 flex items-start gap-6"
+                                >
+                                    <div className={`w-16 h-16 rounded-2xl ${cert.color} flex-shrink-0 flex items-center justify-center text-white shadow-xl shadow-black/10`}>
+                                        {cert.icon}
                                     </div>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex flex-col mb-2">
+                                            <h4 className="text-xl font-bakbak text-primary dark:text-white group-hover:text-accent transition-colors truncate">
+                                                {cert.title}
+                                            </h4>
+                                            <span className="text-xs font-bold text-gray-400 font-poppins uppercase tracking-widest mt-1">
+                                                {cert.year}
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-gray-500 dark:text-gray-500 yellow:text-gray-700 font-poppins leading-relaxed">
+                                            {cert.description}
+                                        </p>
+                                        <div className="mt-4 flex items-center text-accent text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
+                                            <span>Credential Details</span>
+                                            <ChevronRight className="w-4 h-4 ml-1" />
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+
+                            {/* Expertise Highlight Card */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="mt-6 p-10 rounded-[2.5rem] bg-gradient-to-br from-accent to-accent/80 text-primary relative overflow-hidden group shadow-2xl shadow-accent/20"
+                            >
+                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
+                                    <Network className="w-48 h-48" />
+                                </div>
+                                <h4 className="text-3xl font-bakbak mb-3 relative z-10">Technical Mastery</h4>
+                                <p className="font-poppins text-base text-primary/80 mb-8 relative z-10 leading-relaxed font-medium">
+                                    Advanced proficiency in enterprise networking, system administration, and modern software development pipelines.
+                                </p>
+                                <div className="flex flex-wrap gap-2 relative z-10">
+                                    {['React Ecosystem', 'UI/UX Design', 'Network Arch', 'Hardware Ops'].map((tag) => (
+                                        <span key={tag} className="text-[10px] font-bold bg-white/30 backdrop-blur-md px-4 py-1.5 rounded-full uppercase tracking-wider border border-white/20">
+                                            {tag}
+                                        </span>
+                                    ))}
                                 </div>
                             </motion.div>
-                        );
-                    })}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
