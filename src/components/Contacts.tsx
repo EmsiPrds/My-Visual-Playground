@@ -1,11 +1,20 @@
-import { Github, Linkedin, Mail, Send, Twitter, MapPin, Phone } from "lucide-react";
-import { useState } from "react";
 import { motion } from "framer-motion";
+import {
+  Facebook,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+} from "lucide-react";
+import { useState } from "react";
 
 interface ContactProps {
   darkMode: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Contact({ darkMode: _darkMode }: ContactProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -19,10 +28,18 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
   };
 
   const socialLinks = [
-    { icon: Mail, href: "mailto:contact@mvpvisuals.com", label: "Email" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Mail, href: "mailto:mcvincentparedes@gmail.com", label: "Email" },
+    { icon: Github, href: "https://github.com/EmsiPrds", label: "GitHub" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/mc-vincent-paredes-4203122b7/",
+      label: "LinkedIn",
+    },
+    {
+      icon: Facebook,
+      href: "https://www.facebook.com/MCart0121",
+      label: "Facebook",
+    },
   ];
 
   return (
@@ -33,7 +50,10 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
       {/* Dynamic Background Elements - Full Section Coverage */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-yellow-400/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 animate-pulse" style={{ animationDelay: "2s" }} />
+        <div
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 animate-pulse"
+          style={{ animationDelay: "2s" }}
+        />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
@@ -62,9 +82,14 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                   <Mail size={28} />
                 </div>
                 <div>
-                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">Send an Email</p>
-                  <a href="mailto:contact@mvpvisuals.com" className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors">
-                    contact@mvpvisuals.com
+                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">
+                    Send an Email
+                  </p>
+                  <a
+                    href="mailto:mcvincentparedes@gmail.com"
+                    className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors"
+                  >
+                    mcvincentparedes@gmail.com
                   </a>
                 </div>
               </div>
@@ -74,9 +99,11 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                   <MapPin size={28} />
                 </div>
                 <div>
-                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">Our Location</p>
+                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">
+                    Based
+                  </p>
                   <p className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900">
-                    Worldwide / Remote
+                    Atimonan Quezon / Imus Cavite
                   </p>
                 </div>
               </div>
@@ -86,16 +113,23 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                   <Phone size={28} />
                 </div>
                 <div>
-                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">Voice Call</p>
-                  <a href="tel:+1234567890" className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors">
-                    +1-234-567-890
+                  <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">
+                    Contact Number
+                  </p>
+                  <a
+                    href="tel:+1234567890"
+                    className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors"
+                  >
+                    0935-406-8405
                   </a>
                 </div>
               </div>
             </div>
 
             <div className="pt-10">
-              <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-8">Digital Footprint</p>
+              <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-8">
+                Digital Footprint
+              </p>
               <div className="flex flex-wrap gap-5">
                 {socialLinks.map((link, index) => (
                   <motion.a
@@ -125,7 +159,10 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1"
+                    >
                       Identity
                     </label>
                     <input
@@ -133,13 +170,18 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                       id="name"
                       placeholder="Your Name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1"
+                    >
                       Contact Email
                     </label>
                     <input
@@ -147,13 +189,18 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                       id="email"
                       placeholder="email@example.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1">
+                    <label
+                      htmlFor="message"
+                      className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1"
+                    >
                       Brief / Message
                     </label>
                     <textarea
@@ -161,7 +208,9 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                       rows={4}
                       placeholder="Tell us about your project..."
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white resize-none"
                       required
                     ></textarea>
@@ -175,7 +224,10 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                   className="w-full py-5 bg-yellow-400 hover:bg-yellow-500 text-primary font-bakbak text-xl rounded-2xl shadow-2xl shadow-yellow-400/30 flex items-center justify-center gap-4 transition-all"
                 >
                   Initiate Project
-                  <Send size={22} className="group-hover:translate-x-1 transition-transform" />
+                  <Send
+                    size={22}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </motion.button>
               </form>
             </div>

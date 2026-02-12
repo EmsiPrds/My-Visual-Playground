@@ -1,8 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
 import About from "./components/About";
 import AIAssistant from "./components/AiAssistant";
-import BackToTop from "./components/BackToTop";
 import ClickSpark from "./components/animation-components/ClickSpark";
+import BackToTop from "./components/BackToTop";
+import ComingSoon from "./components/ComingSoon";
 import Contact from "./components/Contacts";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
@@ -13,10 +14,13 @@ import Projects from "./components/Projects";
 import Services from "./components/Services";
 import Skills from "./components/Skills";
 import Testimonials from "./components/Testimonials";
+import { ComingSoonProvider, useComingSoon } from "./contexts/ComingSoonContext";
 
-function App() {
+function AppContent() {
+  const { isOpen, closeComingSoon } = useComingSoon();
+
   return (
-    <BrowserRouter>
+    <>
       <ClickSpark
         sparkColor="#FFD54F"
         sparkSize={12}
@@ -39,6 +43,17 @@ function App() {
           <AIAssistant />
         </div>
       </ClickSpark>
+      <ComingSoon isOpen={isOpen} onClose={closeComingSoon} />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <ComingSoonProvider>
+        <AppContent />
+      </ComingSoonProvider>
     </BrowserRouter>
   );
 }

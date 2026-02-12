@@ -9,10 +9,12 @@ import {
   LightThemeToggler,
   YellowThemeToggler,
 } from "./animation-components/ThemeToggler";
+import { useComingSoon } from "../contexts/ComingSoonContext";
 
 export default function Hero() {
   const [hovered, setHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { openComingSoon } = useComingSoon();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -83,7 +85,10 @@ export default function Hero() {
               onMouseLeave={() => setHovered(false)}
               className="relative z-110 flex flex-row items-center justify-center gap-3 sm:gap-4 pt-2"
             >
-              <button className="relative cursor-pointer px-6 py-2 overflow-hidden rounded-full border-2 border-accent bg-accent font-medium text-secondary shadow-inner group transition-all duration-300 ease-in-out">
+              <button 
+                onClick={openComingSoon}
+                className="relative cursor-pointer px-6 py-2 overflow-hidden rounded-full border-2 border-accent bg-accent font-medium text-secondary shadow-inner group transition-all duration-300 ease-in-out"
+              >
                 {/* <!-- Top border animation --> */}
                 <span className="absolute left-0 top-0 h-0 w-0 border-t-2 border-secondary transition-all duration-300 ease-in-out group-hover:w-full"></span>
 
@@ -107,6 +112,7 @@ export default function Hero() {
 
               <button
                 id="contacts"
+                onClick={openComingSoon}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 className="relative cursor-pointer px-6 py-2 overflow-hidden rounded-full border-2 border-accent font-medium light:text-primary dark:text-secondary yellow:text-yellow-900 shadow-inner group transition-all duration-300 ease-in-out"

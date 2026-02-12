@@ -1,8 +1,10 @@
 import { ExternalLink, Github } from "lucide-react";
 import { useState } from "react";
+import { useComingSoon } from "../contexts/ComingSoonContext";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const { openComingSoon } = useComingSoon();
 
   const projects = [
     {
@@ -138,13 +140,19 @@ export default function Projects() {
                 </div>
 
                 {/* Buttons */}
-                <div className="flex space-x-4">
-                  <button className="flex items-center space-x-1 text-yellow-500 hover:text-yellow-600 transition-colors">
+                <div className="flex space-x-4" onClick={(e) => e.stopPropagation()}>
+                  <button 
+                    onClick={openComingSoon}
+                    className="flex items-center space-x-1 text-yellow-500 hover:text-yellow-600 transition-colors"
+                  >
                     <ExternalLink size={16} />
                     <span className="text-sm font-poppins">View</span>
                   </button>
 
-                  <button className="flex items-center space-x-1 text-yellow-500 hover:text-yellow-600 transition-colors">
+                  <button 
+                    onClick={openComingSoon}
+                    className="flex items-center space-x-1 text-yellow-500 hover:text-yellow-600 transition-colors"
+                  >
                     <Github size={16} />
                     <span className="text-sm font-poppins">Code</span>
                   </button>
