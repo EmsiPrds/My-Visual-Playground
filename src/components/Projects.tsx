@@ -8,58 +8,58 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Centralized Legislative and Administrative Management and Tracking System",
       category: "Web Development",
       description:
-        "A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard.",
-      tools: ["React", "Node.js", "PostgreSQL", "Stripe"],
+        "Developed and supported a web-based system for legislative and administrative management processes. Assisted in frontend development, documentation, and system implementation.",
+      tools: ["React", "Tailwind CSS", "Node.js", "MongoDB"],
       image:
-        "https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
-      title: "Brand Identity System",
-      category: "Graphic Design",
+      title: "Automated RBI Web Application",
+      category: "Web Development",
       description:
-        "Complete brand identity package including logo design, color palette, typography system, and brand guidelines for a tech startup.",
-      tools: ["Illustrator", "Figma", "Photoshop"],
+        "Developed a web-based Resident Basic Information (RBI) system for managing and organizing resident records digitally. Assisted in frontend development, database integration, documentation, and system implementation.",
+      tools: ["React", "Tailwind CSS", "Node.js", "MongoDB"],
       image:
-        "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
-      title: "Enterprise Network Setup",
+      title: "ISKA: Web-Based Campus Tour with Voice Command",
+      category: "Web Development",
+      description:
+        "Developed an interactive campus tour system with voice command functionality to improve campus navigation and user accessibility.",
+      tools: ["React", "Tailwind CSS", "JavaScript", "Web Speech API"],
+      image:
+        "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      title: "Barangay-Wide CCTV, Wi-Fi, and Network Installation",
       category: "Networking",
       description:
-        "Designed and implemented a secure, scalable network infrastructure for a 200+ employee organization with VLANs and redundancy.",
-      tools: ["Cisco", "VLANs", "Routing", "Security"],
+        "Installed and configured CCTV cameras, Wi-Fi networks, routers, switches, and IP cameras for barangay-wide infrastructure deployment. Performed troubleshooting, connectivity testing, and onsite technical implementation.",
+      tools: ["TP-Link", "IP Cameras", "Networking", "CCTV"],
       image:
-        "https://images.pexels.com/photos/2881229/pexels-photo-2881229.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
-      title: "SaaS Dashboard",
+      title: "Freelance CCTV Installation and Configuration Projects",
+      category: "Networking",
+      description:
+        "Installed and configured CCTV systems, Wi-Fi networks, routers, switches, and IP cameras for residential and small business clients. Performed cable routing, troubleshooting, equipment setup, and onsite technical support.",
+      tools: ["CCTV", "Wi-Fi", "Routers", "IP Cameras"],
+      image:
+        "https://images.pexels.com/photos/207574/pexels-photo-207574.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      title: "Barangay Management System",
       category: "Web Development",
       description:
-        "Modern analytics dashboard with real-time data visualization, customizable widgets, and comprehensive reporting features.",
-      tools: ["React", "TypeScript", "D3.js", "Tailwind"],
+        "Developed a web-based barangay management system to streamline administrative operations, resident records management, document processing, and community service tracking.",
+      tools: ["React", "Tailwind CSS", "Node.js", "MongoDB"],
       image:
-        "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      title: "Digital Marketing Campaign",
-      category: "Graphic Design",
-      description:
-        "Multi-platform marketing campaign including social media graphics, email templates, and landing page designs.",
-      tools: ["Photoshop", "Figma", "After Effects"],
-      image:
-        "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      title: "Mobile App UI/UX",
-      category: "Web Development",
-      description:
-        "User-centered mobile application design with seamless navigation, micro-interactions, and accessibility features.",
-      tools: ["React Native", "Figma", "TypeScript"],
-      image:
-        "https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
   ];
 

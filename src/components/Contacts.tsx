@@ -45,7 +45,7 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
   return (
     <section
       id="contact"
-      className="relative min-h-screen flex items-center justify-center bg-gray-100 dark:bg-primary yellow:bg-yellow-100 py-24 px-4 sm:px-6 transition-colors duration-500 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-gray-100 py-24 px-4 sm:px-6 transition-colors duration-500 overflow-hidden"
     >
       {/* Dynamic Background Elements - Full Section Coverage */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
@@ -67,10 +67,10 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
             className="space-y-12"
           >
             <div>
-              <h2 className="text-6xl md:text-8xl font-bakbak mb-8 text-primary dark:text-white yellow:text-yellow-900 leading-none">
+              <h2 className="text-6xl md:text-8xl font-bakbak mb-8 text-primary leading-none">
                 Get In <span className="text-yellow-400">Touch</span>
               </h2>
-              <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 yellow:text-yellow-800/80 max-w-lg font-poppins font-light leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-500 max-w-lg font-poppins font-light leading-relaxed">
                 Elevating your digital presence through strategic design and
                 robust technical solutions. Let's discuss your next project.
               </p>
@@ -78,7 +78,7 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
 
             <div className="space-y-8">
               <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-3xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
+                <div className="w-14 h-14 rounded-3xl bg-gray-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
                   <Mail size={28} />
                 </div>
                 <div>
@@ -87,7 +87,7 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                   </p>
                   <a
                     href="mailto:mcvincentparedes@gmail.com"
-                    className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors"
+                    className="text-xl font-poppins font-semibold text-primary hover:text-yellow-400 transition-colors"
                   >
                     mcvincentparedes@gmail.com
                   </a>
@@ -95,21 +95,21 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
               </div>
 
               <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-3xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
+                <div className="w-14 h-14 rounded-3xl bg-gray-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
                   <MapPin size={28} />
                 </div>
                 <div>
                   <p className="text-xs font-bakbak text-gray-400 uppercase tracking-[0.2em] mb-1">
                     Based
                   </p>
-                  <p className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900">
+                  <p className="text-xl font-poppins font-semibold text-primary">
                     Atimonan Quezon / Imus Cavite
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-3xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
+                <div className="w-14 h-14 rounded-3xl bg-gray-200/50 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-400 group-hover:text-primary transition-all duration-500 shadow-sm">
                   <Phone size={28} />
                 </div>
                 <div>
@@ -118,7 +118,7 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                   </p>
                   <a
                     href="tel:+1234567890"
-                    className="text-xl font-poppins font-semibold text-primary dark:text-white yellow:text-yellow-900 hover:text-yellow-400 transition-colors"
+                    className="text-xl font-poppins font-semibold text-primary hover:text-yellow-400 transition-colors"
                   >
                     0935-406-8405
                   </a>
@@ -137,7 +137,7 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                     href={link.href}
                     whileHover={{ y: -8, scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-14 h-14 rounded-2xl bg-gray-100 dark:bg-white/5 yellow:bg-yellow-200/50 flex items-center justify-center text-primary dark:text-white yellow:text-yellow-900 hover:bg-yellow-400 hover:text-primary transition-all duration-500 shadow-sm border border-transparent hover:border-yellow-400/20"
+                    className="w-14 h-14 rounded-2xl bg-gray-200/50 flex items-center justify-center text-primary hover:bg-yellow-400 hover:text-primary transition-all duration-500 shadow-sm border border-transparent hover:border-yellow-400/20"
                   >
                     <link.icon size={24} />
                   </motion.a>
@@ -155,13 +155,13 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
             className="relative"
           >
             {/* Form Backdrop Card */}
-            <div className="bg-gray-50/50 dark:bg-white/5 yellow:bg-yellow-50/50 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-gray-100 dark:border-white/10 yellow:border-yellow-200 shadow-xl">
+            <div className="bg-white backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-gray-100 shadow-xl">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1"
+                      className="text-xs font-bakbak text-primary uppercase tracking-widest ml-1"
                     >
                       Identity
                     </label>
@@ -173,14 +173,14 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white"
+                      className="w-full px-7 py-5 rounded-2xl bg-gray-50 border-2 border-gray-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary"
                       required
                     />
                   </div>
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1"
+                      className="text-xs font-bakbak text-primary uppercase tracking-widest ml-1"
                     >
                       Contact Email
                     </label>
@@ -192,14 +192,14 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white"
+                      className="w-full px-7 py-5 rounded-2xl bg-gray-50 border-2 border-gray-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary"
                       required
                     />
                   </div>
                   <div className="space-y-2">
                     <label
                       htmlFor="message"
-                      className="text-xs font-bakbak text-primary dark:text-white yellow:text-yellow-900 uppercase tracking-widest ml-1"
+                      className="text-xs font-bakbak text-primary uppercase tracking-widest ml-1"
                     >
                       Brief / Message
                     </label>
@@ -211,7 +211,7 @@ export default function Contact({ darkMode: _darkMode }: ContactProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full px-7 py-5 rounded-2xl bg-white dark:bg-primary yellow:bg-white border-2 border-gray-100 dark:border-gray-800 yellow:border-yellow-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary dark:text-white resize-none"
+                      className="w-full px-7 py-5 rounded-2xl bg-gray-50 border-2 border-gray-100 focus:border-yellow-400 focus:outline-none transition-all font-poppins text-primary resize-none"
                       required
                     ></textarea>
                   </div>

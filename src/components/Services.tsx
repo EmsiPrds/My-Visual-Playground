@@ -1,65 +1,28 @@
 import { Code, Palette, Server, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
-
-import artImg from "@/assets/art.png";
-import designImg from "@/assets/design.png";
-import networkImg from "@/assets/network.png";
-import webDevImg from "@/assets/web-dev.png";
 
 export default function Services() {
-  const [cursorImg, setCursorImg] = useState<string | null>(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [isDesktop, setIsDesktop] = useState(false);
-
   const services = [
     {
       icon: Code,
       title: "Web Design & Development",
       description: "Modern, responsive, and optimized websites.",
-      preview: webDevImg,
     },
     {
       icon: Palette,
       title: "Graphic Design & Branding",
       description: "Visual identities and digital marketing materials.",
-      preview: designImg,
     },
     {
       icon: Sparkles,
       title: "Digital Art & Illustration",
       description: "Original artwork and creative concepts.",
-      preview: artImg,
     },
     {
       icon: Server,
       title: "Computer System Servicing & Networking",
       description: "System setup and connectivity solutions.",
-      preview: networkImg,
     },
   ];
-
-  // Track screen size
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)"); // Desktop: ≥1024px
-    setIsDesktop(mq.matches);
-
-    const handleResize = () => setIsDesktop(mq.matches);
-    mq.addEventListener("change", handleResize);
-
-    return () => mq.removeEventListener("change", handleResize);
-  }, []);
-
-  // Track mouse movement (desktop only)
-  useEffect(() => {
-    if (!isDesktop) return;
-
-    const handleMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, [isDesktop]);
 
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -76,20 +39,6 @@ export default function Services() {
         sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden 
         bg-white dark:bg-primary yellow:bg-yellow-100 shadow-2xl"
       >
-        {/* Floating Preview Image (Desktop Only) */}
-        {isDesktop && cursorImg && (
-          <img
-            src={cursorImg}
-            className="pointer-events-none fixed w-72 h-72 md:w-80 md:h-80 rounded-[20px] 
-            object-cover opacity-100 transition-transform duration-150 z-50"
-            style={{
-              top: pos.y + 20,
-              left: pos.x + 20,
-              transform: "translate(-50%, -50%)",
-            }}
-          />
-        )}
-
         <div className="container mx-auto px-6 py-12">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold font-bakbak text-center mb-4 text-primary dark:text-secondary">
@@ -111,10 +60,6 @@ export default function Services() {
                 return (
                   <div
                     key={idx}
-                    onMouseEnter={() =>
-                      isDesktop && setCursorImg(service.preview)
-                    }
-                    onMouseLeave={() => setCursorImg(null)}
                     className="group bg-secondary/80 dark:bg-secondary backdrop-blur-md 
                     p-8 rounded-2xl border-2 border-primary hover:border-accent 
                     transition-all duration-300 shadow-md"

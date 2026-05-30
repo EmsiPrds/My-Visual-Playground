@@ -84,7 +84,7 @@ export default function Experience() {
     return (
         <section
             id="experience"
-            className="relative py-24 sm:py-32 overflow-hidden bg-gray-100 dark:bg-[#050505] yellow:bg-accent/5 transition-colors duration-500"
+            className="relative py-24 sm:py-32 overflow-hidden bg-gray-100 transition-colors duration-500"
         >
             {/* Dynamic Background Effects */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
@@ -102,10 +102,10 @@ export default function Experience() {
                         transition={{ duration: 0.8 }}
                         className="max-w-2xl"
                     >
-                        <h2 className="text-5xl md:text-7xl font-bakbak mb-6 text-primary dark:text-white leading-tight">
+                        <h2 className="text-5xl md:text-7xl font-bakbak mb-6 text-primary leading-tight">
                             Professional <span className="text-accent">Journey</span>
                         </h2>
-                        <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 yellow:text-gray-700 font-poppins font-light leading-relaxed">
+                        <p className="text-lg md:text-xl text-gray-500 font-poppins font-light leading-relaxed">
                             A showcase of my career milestones, academic background, and technical certifications.
                         </p>
                     </motion.div>
@@ -130,12 +130,12 @@ export default function Experience() {
                             <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
                                 <Briefcase className="w-7 h-7" />
                             </div>
-                            <h3 className="text-3xl font-bakbak text-primary dark:text-white uppercase tracking-tight">
+                            <h3 className="text-3xl font-bakbak text-primary uppercase tracking-tight">
                                 Experiences
                             </h3>
                         </div>
 
-                        <div className="space-y-10 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-px before:bg-gray-200 dark:before:bg-white/10 yellow:before:bg-yellow-200">
+                        <div className="space-y-10 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-px before:bg-gray-200">
                             {experiences.map((exp, index) => (
                                 <motion.div
                                     key={index}
@@ -146,27 +146,27 @@ export default function Experience() {
                                     className="relative pl-12 group"
                                 >
                                     {/* Timeline Marker */}
-                                    <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-white dark:bg-[#0a0a0a] yellow:bg-accent/10 border border-gray-100 dark:border-white/10 yellow:border-accent/20 flex items-center justify-center z-10 group-hover:border-accent transition-colors duration-300 shadow-sm">
+                                    <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center z-10 group-hover:border-accent transition-colors duration-300 shadow-sm">
                                         <span className="text-accent">{exp.icon}</span>
                                     </div>
 
-                                    <div className="p-8 rounded-[2rem] bg-gray-50/50 dark:bg-white/[0.03] yellow:bg-accent/5 backdrop-blur-xl border border-gray-100 dark:border-white/5 yellow:border-accent/10 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-500">
+                                    <div className="p-8 rounded-[2rem] bg-white backdrop-blur-xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-500">
                                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                                             <span className="text-xs font-bold text-accent font-poppins uppercase tracking-widest flex items-center gap-2">
                                                 <Calendar className="w-3.5 h-3.5" />
                                                 {exp.period}
                                             </span>
-                                            <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${exp.type === 'work' ? 'bg-accent/10 text-accent' : 'bg-primary/20 text-primary dark:bg-white/10 dark:text-white'}`}>
+                                            <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${exp.type === 'work' ? 'bg-accent/10 text-accent' : 'bg-primary/20 text-primary'}`}>
                                                 {exp.type}
                                             </span>
                                         </div>
-                                        <h4 className="text-2xl font-bakbak text-primary dark:text-white mb-2 leading-tight group-hover:text-accent transition-colors">
+                                        <h4 className="text-2xl font-bakbak text-primary mb-2 leading-tight group-hover:text-accent transition-colors">
                                             {exp.title}
                                         </h4>
-                                        <p className="text-lg font-poppins font-medium text-gray-600 dark:text-gray-400 yellow:text-gray-600 mb-5">
+                                        <p className="text-lg font-poppins font-medium text-gray-600 mb-5">
                                             {exp.company}
                                         </p>
-                                        <p className="text-gray-500 dark:text-gray-500 yellow:text-gray-700 font-poppins text-base leading-relaxed">
+                                        <p className="text-gray-500 font-poppins text-base leading-relaxed">
                                             {exp.description}
                                         </p>
                                     </div>
@@ -181,7 +181,7 @@ export default function Experience() {
                             <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
                                 <Award className="w-7 h-7" />
                             </div>
-                            <h3 className="text-3xl font-bakbak text-primary dark:text-white uppercase tracking-tight">
+                            <h3 className="text-3xl font-bakbak text-primary uppercase tracking-tight">
                                 Certifications
                             </h3>
                         </div>
@@ -195,21 +195,21 @@ export default function Experience() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     whileHover={{ x: 8 }}
-                                    className="group p-8 rounded-[2rem] bg-gray-50/50 dark:bg-white/[0.03] yellow:bg-accent/5 border border-gray-100 dark:border-white/5 yellow:border-accent/10 shadow-sm hover:shadow-lg transition-all duration-300 flex items-start gap-6"
+                                    className="group p-8 rounded-[2rem] bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 flex items-start gap-6"
                                 >
                                     <div className={`w-16 h-16 rounded-2xl ${cert.color} flex-shrink-0 flex items-center justify-center text-white shadow-xl shadow-black/10`}>
                                         {cert.icon}
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <div className="flex flex-col mb-2">
-                                            <h4 className="text-xl font-bakbak text-primary dark:text-white group-hover:text-accent transition-colors truncate">
+                                            <h4 className="text-xl font-bakbak text-primary group-hover:text-accent transition-colors truncate">
                                                 {cert.title}
                                             </h4>
                                             <span className="text-xs font-bold text-gray-400 font-poppins uppercase tracking-widest mt-1">
                                                 {cert.year}
                                             </span>
                                         </div>
-                                        <p className="text-sm text-gray-500 dark:text-gray-500 yellow:text-gray-700 font-poppins leading-relaxed">
+                                        <p className="text-sm text-gray-500 font-poppins leading-relaxed">
                                             {cert.description}
                                         </p>
                                         <div className="mt-4 flex items-center text-accent text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
