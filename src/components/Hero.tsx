@@ -151,14 +151,14 @@ export default function Hero() {
           <div className="flex-1 flex justify-center items-end relative w-full min-h-0">
             {/* Scrolling mockups behind */}
             <div>
-              <div className="absolute inset-0 z-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-sm -left-100 bottom-30">
+              <div className="absolute inset-0 z-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none skew-y-12 blur-[4px] -left-100 bottom-30">
                 <ScrollingMockup
                   imageSrc={MockupImg}
                   scrollRange={300}
                   direction="up"
                 />
               </div>
-              <div className="absolute inset-0 z-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none -skew-y-12 blur-sm -right-100 bottom-30">
+              <div className="absolute inset-0 z-0 flex justify-center items-center scale-90 sm:scale-100 opacity-90 pointer-events-none -skew-y-12 blur-[4px] -right-100 bottom-30">
                 <ScrollingMockup
                   imageSrc={MockupImg1}
                   scrollRange={300}

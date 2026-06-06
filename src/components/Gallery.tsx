@@ -13,6 +13,13 @@ import img12 from "../assets/GalleryImg/485385706_4199015590318844_1199298520453
 import img13 from "../assets/GalleryImg/486037208_1149881453815912_3469223473439396301_n.jpg";
 import img14 from "../assets/GalleryImg/486284888_4201372983416438_2322530579739436602_n.jpg";
 import img15 from "../assets/GalleryImg/489556014_1166339912170066_1873711518467704819_n.jpg";
+import img16 from "../assets/GalleryImg/Boys Jersey Design.png";
+import img17 from "../assets/GalleryImg/Group 2.svg";
+import img18 from "../assets/GalleryImg/ISKA Poster_page-0001.jpg";
+import img19 from "../assets/GalleryImg/Logo.jpg";
+import img20 from "../assets/GalleryImg/Nagkakaisa at Laging Handa sa Pakikipagtalastasan para sa Kapakanan ng Lahat.png";
+import img21 from "../assets/GalleryImg/Solo Poster 2.png";
+import img22 from "../assets/GalleryImg/White.png";
 import { useComingSoon } from "../contexts/ComingSoonContext";
 import CircularGallery from "./animation-components/CircularGallery";
 
@@ -36,6 +43,13 @@ const galleryImages = [
   { image: img13 },
   { image: img14 },
   { image: img15 },
+  { image: img16 },
+  { image: img17 },
+  { image: img18 },
+  { image: img19 },
+  { image: img20 },
+  { image: img21 },
+  { image: img22 },
 ];
 
 // eslint-disable-next-line no-empty-pattern

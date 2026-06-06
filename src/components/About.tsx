@@ -39,7 +39,7 @@ export default function About({ darkMode }: AboutProps) {
             >
               Hi, I'm{" "}
               <span className="text-accent">
-                Mc Vincent Paredes, a UI Designer and Software Developer{" "}
+                Mc Vincent Paredes, a UI/UX Designer and Software Developer{" "}
               </span>
               from Quezon Province, Philippines. I create clean, modern, and
               user-centered digital experiences that blend design and
